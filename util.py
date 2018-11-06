@@ -49,6 +49,8 @@ def createCompetitionGraph(seeding, results):
     i=0
     G = snap.PNGraph.New()
     for loser, winner in match_win_list:
+        if loser=="BYE":
+            continue
         if loser not in name_to_node_map:
             nid = G.AddNode(-1)
             node_to_name_map[nid] = loser
