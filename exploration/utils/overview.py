@@ -7,7 +7,7 @@ def quick_properties(graph, name, dic_path):
     n_edges = graph.GetEdges()
     n_nodes = graph.GetNodes()
     print("##########")
-    print("Quick overview of {} Dataset".format(name))
+    print("Quick overview of {} Network".format(name))
     print("##########")
     print("{} Nodes, {} Edges").format(n_nodes, n_edges)
     print("{} Self-edges ".format(snap.CntSelfEdges(graph)))
@@ -16,6 +16,9 @@ def quick_properties(graph, name, dic_path):
     print("{} Reciprocated edges".format(snap.CntUniqBiDirEdges(graph)))
     print("{} 0-out-degree nodes, {} 0-in-degree nodes".format(snap.CntOutDegNodes(graph, 0),
                                                                snap.CntInDegNodes(graph, 0)))
+    node_in = graph.GetNI(snap.GetMxInDegNId(graph))
+    node_out = graph.GetNI(snap.GetMxOutDegNId(graph))
+    print("Maximum node in-degree: {}, maximum node out-degree: {}".format(node_in.GetDeg(), node_out.GetDeg()))
     print("###")
     components = snap.TCnComV()
     snap.GetWccs(graph, components)
