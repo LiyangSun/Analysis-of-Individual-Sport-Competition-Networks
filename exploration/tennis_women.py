@@ -8,43 +8,43 @@ import utils.motif_detection as md
 
 
 if __name__ == '__main__':
-    dic_path = "../datasets/tennis/men_ids.pkl"
+    dic_path = "../datasets/tennis/women_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/tennis/ATP/men/edges.txt"
+        txt_path = "../datasets/tennis/ATP/women/edges.txt"
         graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
         graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
-        # ov.visu(graph, "tennisATPmen")
+        # ov.visu(graph, "tennisATPwomen")
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)
-        # sr.sim_node_max("Nadal R.", features, dic_path)
-        # sr.sim_node_max("Nadal R.", rec_features, dic_path)
-        # sr.plot_sim_hist("Federer R.", rec_features, dic_path, bin_width=30)
+        # sr.sim_node_max("Williams S.", features, dic_path)
+        # sr.sim_node_max("Williams S.", rec_features, dic_path)
+        # sr.plot_sim_hist("Williams S.", rec_features, dic_path, bin_width=30)
 
         # bsf.cumul_BFS(graph, "tennis")
         # bsf.bowtie_components(graph, "tennis")
         # bsf.path_proba(graph, "tennis")
 
-        # sim.JA_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
-        # sim.CN_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
+        # sim.JA_similarity_max(graph_directed, "Williams S.", dic_path, directed=True)
+        # sim.CN_similarity_max(graph_directed, "Williams S.", dic_path, directed=True)
 
-        #directed_3 = md.load_3_subgraphs()
-        #motif_counts = [0] * len(directed_3)
-        #config_graph, clustering_coeffs = md.gen_config_model_rewire(graph_directed, 1000)
-        #md.plot_rewiring_clust(clustering_coeffs)
-        #md.enumerate_subgraph(graph_directed, directed_3, 3, verbose=True)
-        #if True:
+        # directed_3 = md.load_3_subgraphs()
+        # motif_counts = [0] * len(directed_3)
+        # config_graph, clustering_coeffs = md.gen_config_model_rewire(graph_directed, 1000)
+        # md.plot_rewiring_clust(clustering_coeffs)
+        # md.enumerate_subgraph(graph_directed, directed_3, 3, verbose=True)
+        # if True:
         #    print(motif_counts)
-        #md.zscores_3(txt_path, directed_3)
+        # md.zscores_3(txt_path, directed_3)
 
 
 
         # Basic info on graph
-        # snap.PrintInfo(graph, "Tennis ATP Men", "infotennis", False)
+        # snap.PrintInfo(graph, "Tennis ATP Women", "infotennis", False)
 
         # Get approximate of ... using BFS on 100 rdm starting nodes:
         # effective diameter (90-th percentile of the distribution of shortest path lengths)
