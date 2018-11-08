@@ -9,6 +9,7 @@ import sys
 import csv
 import snap
 
+
 def getOrderedNameList(path):
     """Get the players by ranking order from csv file path"""
     results = []
@@ -17,6 +18,7 @@ def getOrderedNameList(path):
         for i, row in enumerate(csv_f):
             results.append(row[1])
     return results
+
 
 def createCompetitionGraph(seeding, results, G=None, name_to_node_map=None, verbose=False):
     """Create competitions graph from seeding and results"""
@@ -70,11 +72,14 @@ def createCompetitionGraph(seeding, results, G=None, name_to_node_map=None, verb
         G.AddEdge(name_to_node_map[loser], name_to_node_map[winner])
     return G, name_to_node_map
 
+
 def get_fencing_graph_and_name_map():
     G = snap.PNEANet.New()
     name_map = {}
     for month, year in [('oct', '2017'), ('april', '2018'), ('dec', '2017'), ('jan', '2018'), ('jul', '2018')]:
-        seeding = getOrderedNameList('../datasets/fencing/csv/'+month + '_nac_' + year + '_seeding.csv')  # ["a", "b", "c", "d", "e"]
-        results = getOrderedNameList('../datasets/fencing/csv/'+month + '_nac_' + year + '_results.csv')  # ["d", "c", "a", "b", "e"]
+        seeding = getOrderedNameList(
+            '../datasets/fencing/csv/' + month + '_nac_' + year + '_seeding.csv')  # ["a", "b", "c", "d", "e"]
+        results = getOrderedNameList(
+            '../datasets/fencing/csv/' + month + '_nac_' + year + '_results.csv')  # ["d", "c", "a", "b", "e"]
         createCompetitionGraph(seeding, results, G, name_map)
     return G, name_map

@@ -1,7 +1,7 @@
 from __future__ import division
 import numpy as np
 import scipy.integrate as integrate
-from ..exploration.utils import matrix as mx
+import matrix as mx
 
 
 def step(x):

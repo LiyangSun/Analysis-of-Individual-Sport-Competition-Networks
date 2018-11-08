@@ -1,6 +1,5 @@
 import snap
-import util
-
+import utils.distance as dst
 
 if __name__ == '__main__':
     w1 = "../datasets/tennis/ATP/men/weights.pkl"
@@ -10,4 +9,4 @@ if __name__ == '__main__':
     graph1 = snap.LoadEdgeList(snap.PNEANet, men_path, 0, 1, ';')
     graph2 = snap.LoadEdgeList(snap.PNEANet, women_path, 0, 1, ';')
 
-    print(util.network_distance(graph1, graph2, w1, w2))
+    print(dst.network_distance(graph1, graph2, w1, w2))
