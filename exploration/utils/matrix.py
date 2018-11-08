@@ -46,7 +46,7 @@ def laplacian_matrix(graph, weights_path, in_degree=True):
         return adj - out_deg_matrix(graph)
 
 
-def laplacian_eigen(graph, weights_path, in_degree=True):
+def sorted_laplacian_eigen(graph, weights_path, in_degree=True):
     """Returns the eigen-vectors and values (sorted by values) of the Laplacian matrix of graph"""
     laplacian = laplacian_matrix(graph, weights_path, in_degree)
     values, vectors = np.linalg.eig(laplacian)
