@@ -16,20 +16,20 @@ if __name__ == '__main__':
         graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
 
-        # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
+        ov.quick_properties(graph, "Chess", dic_path)
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)
-        # sr.sim_node_max("Nadal R.", features, dic_path)
-        # sr.sim_node_max("Nadal R.", rec_features, dic_path)
-        # sr.plot_sim_hist("Federer R.", rec_features, dic_path, bin_width=30)
+        # sr.sim_node_max(7848, features, dic_path)
+        # sr.sim_node_max(7848, rec_features, dic_path)
+        # sr.plot_sim_hist(7848, rec_features, dic_path, bin_width=30)
 
         # bsf.cumul_BFS(graph, "tennis")
         # bsf.bowtie_components(graph, "tennis")
         # bsf.path_proba(graph, "tennis")
 
-        # sim.JA_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
-        # sim.CN_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
+        # sim.JA_similarity_max(graph_directed, 7848, dic_path, directed=True)
+        # sim.CN_similarity_max(graph_directed, 7848, dic_path, directed=True)
 
         # directed_3 = md.load_3_subgraphs()
         # motif_counts = [0] * len(directed_3)
