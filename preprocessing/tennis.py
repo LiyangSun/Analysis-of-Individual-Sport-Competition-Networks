@@ -1,6 +1,7 @@
 import pandas as pd
 from os import listdir
 import pickle
+from pathlib import Path
 import utils
 
 
@@ -31,6 +32,33 @@ def get_edges_txt(csv_dir, dic_path, edges_path):
                     edges.write(str(l_id) + ";" + str(w_id) + "\n")
 
 
+def get_weights(csv_dir, dic_path, weights_path):
+    """Save a dictionary {edges: weights} from csv_dir and dic_path into weights_path"""
+    weights_dic = {}
+    try:
+        my_abs_path = Path(weights_path).resolve()
+    except OSError as e:
+        pass
+    else:
+        with open(weights_path, 'rb') as f:
+            weights_dic = pickle.load(f)
+
+    with open(dic_path, 'rb') as dic_id:
+        name_dic = pickle.load(dic_id)
+        for f in listdir(csv_dir):
+            df = pd.read_csv(csv_dir + f, header=0)
+            for w, l in zip(list(df.loc[:, 'Winner'].values), list(df.loc[:, 'Loser'].values)):
+                w_id = name_dic[w]
+                l_id = name_dic[l]
+                if (l_id, w_id) not in weights_dic.keys():
+                    weights_dic[(l_id, w_id)] = 1
+                else:
+                    weights_dic[(l_id, w_id)] += 1
+
+    with open(weights_path, 'wb') as f:
+        pickle.dump(weights_dic, f, pickle.HIGHEST_PROTOCOL)
+
+
 if __name__ == '__main__':
     dic_men_path = "../datasets/tennis/men_ids.pkl"
     dic_women_path = "../datasets/tennis/women_ids.pkl"
@@ -41,8 +69,12 @@ if __name__ == '__main__':
     # excel_to_csv("../datasets/tennis/ATP/men/", 2000, 2019)
     # utils.player_dictionary(men_csv_path, dic_men_path, 'Winner', 'Loser', True)
     # get_edges_txt(men_csv_path, dic_men_path, "../datasets/tennis/ATP/men/edges.txt")
+    # get_weights(men_csv_path, dic_men_path, "../datasets/tennis/ATP/men/weights.pkl")
+    # utils.get_uniq_edges_txt("../datasets/tennis/ATP/men/weights.pkl", "../datasets/tennis/ATP/men/uniq_edges.txt")
 
     # Women players preprocessing
     # excel_to_csv("../datasets/tennis/ATP/women/", 2007, 2019)
     # utils.player_dictionary(women_csv_path, dic_women_path, 'Winner', 'Loser', True)
     # get_edges_txt(women_csv_path, dic_women_path, "../datasets/tennis/ATP/women/edges.txt")
+    # get_weights(women_csv_path, dic_women_path, "../datasets/tennis/ATP/women/weights.pkl")
+    # utils.get_uniq_edges_txt("../datasets/tennis/ATP/women/weights.pkl", "../datasets/tennis/ATP/women/uniq_edges.txt")

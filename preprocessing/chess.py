@@ -2,30 +2,58 @@ import utils
 import pickle
 import pandas as pd
 from os import listdir
+from pathlib import Path
 
 
-def get_edges_txt(csv_dir, dic_path, edges_path):
+def get_edges_txt(csv_dir, edges_path):
     """Get a txt file with all match results from csv_dir, first column is loser id, second is winner id
     This is so that when creating the directed graph, the loser references the winner"""
 
-    with open(dic_path, 'rb') as dic_id:
-        dic = pickle.load(dic_id)
-        with open(edges_path, 'w') as edges:
-            for f in listdir(csv_dir):
-                df = pd.read_csv(csv_dir + f, header=0)
-                for w, b, s in zip(list(df.loc[:, 'White Player #'].values), list(df.loc[:, 'Black Player #'].values)):
-                    if s == 1:
-                        w_id = dic[w]
-                        b_id = dic[b]
-                        edges.write(str(b_id) + ";" + str(w_id) + "\n")
-                    elif s == 0:
-                        w_id = dic[w]
-                        b_id = dic[b]
-                        edges.write(str(w_id) + ";" + str(b_id) + "\n")
+    with open(edges_path, 'w') as edges:
+        for f in listdir(csv_dir):
+            df = pd.read_csv(csv_dir + f, header=0)
+            for w, b, s in zip(list(df.loc[:, 'White Player #'].values),
+                               list(df.loc[:, 'Black Player #'].values),
+                               list(df.loc[:, 'Score'].values)):
+                if s == 1:
+                    edges.write(str(b) + ";" + str(w) + "\n")
+                elif s == 0:
+                    edges.write(str(w) + ";" + str(b) + "\n")
+
+
+def get_weights(csv_dir, weights_path):
+    """Save a dictionary {edges: weights} from csv_dir and dic_path into weights_path"""
+    weights_dic = {}
+    try:
+        my_abs_path = Path(weights_path).resolve()
+    except OSError as e:
+        pass
+    else:
+        with open(weights_path, 'rb') as f:
+            weights_dic = pickle.load(f)
+
+    for f in listdir(csv_dir):
+        df = pd.read_csv(csv_dir + f, header=0)
+        for w, b, s in zip(list(df.loc[:, 'White Player #'].values),
+                           list(df.loc[:, 'Black Player #'].values),
+                           list(df.loc[:, 'Score'].values)):
+            if s != 0.5:
+                x, y = w, b
+                if s == 0:
+                    x, y = b, w
+                if (x, y) not in weights_dic.keys():
+                    weights_dic[(x, y)] = 1
+                else:
+                    weights_dic[(x, y)] += 1
+
+    with open(weights_path, 'wb') as f:
+        pickle.dump(weights_dic, f, pickle.HIGHEST_PROTOCOL)
 
 
 if __name__ == '__main__':
     dic_path = "../datasets/chess/chess_ids.pkl"
-    csv_path = "../datasets/chess/"
+    csv_path = "../datasets/chess/csv/"
     # utils.player_dictionary(csv_path, dic_path, "White Player #", "Black Player #", False)
-    get_edges_txt(csv_path, dic_path, "../datasets/chess/edges.txt")
+    # get_edges_txt(csv_path, "../datasets/chess/edges.txt")
+    # get_weights(csv_path, "../datasets/chess/weights.pkl")
+    # utils.get_uniq_edges_txt("../datasets/chess/weights.pkl", "../datasets/chess/uniq_edges.txt")

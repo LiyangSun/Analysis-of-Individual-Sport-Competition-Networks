@@ -5,6 +5,7 @@ import utils.structural_role as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
+import utils.load as ld
 
 
 if __name__ == '__main__':
@@ -12,11 +13,13 @@ if __name__ == '__main__':
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         txt_path = "../datasets/tennis/ATP/men/edges.txt"
-        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
-        graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+        utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
+        # graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+        # graph_undirected = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+        # graph_directed = snap.LoadEdgeList(snap.PNGraph, utxt_path, 0, 1, ';')
 
-        # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
+        # ov.quick_properties(graph_undirected, "Tennis ATP Men", dic_path)
+        # ov.quick_properties(graph_directed, "Tennis ATP Men", dic_path)
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)

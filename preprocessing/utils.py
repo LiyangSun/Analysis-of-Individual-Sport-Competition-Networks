@@ -39,3 +39,15 @@ def player_dictionary(csv_dir, dic_path, win_col, lose_col, have_names=True):
 
     with open(dic_path, 'wb') as f:
         pickle.dump(dic, f, pickle.HIGHEST_PROTOCOL)
+
+
+def get_uniq_edges_txt(weights_path, uniq_edges_path):
+    """Get a txt file with all match results from weights_path, first column is loser id, second is winner id,
+    with NO repetition
+    This is so that when creating the directed graph, the loser references the winner"""
+
+    with open(weights_path, 'rb') as wdic_id:
+        weights = pickle.load(wdic_id)
+        with open(uniq_edges_path, 'w') as edges:
+            for (x, y) in weights.keys():
+                edges.write(str(x) + ";" + str(y) + "\n")
