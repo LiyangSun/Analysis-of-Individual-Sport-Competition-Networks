@@ -57,6 +57,3 @@ def quick_properties(graph, name, dic_path):
                                                                                  list(mydict.values()).index(
                                                                                      sorted_NIdAuthH[2])]))
 
-
-def visu(graph, fig_name):
-    snap.PlotOutDegDistr(graph, fig_name, "Distribution of out-degrees of nodes")

@@ -17,7 +17,6 @@ if __name__ == '__main__':
         graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
-        # ov.visu(graph, "tennisATPwomen")
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)
