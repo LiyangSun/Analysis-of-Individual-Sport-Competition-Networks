@@ -83,3 +83,21 @@ def get_fencing_graph_and_name_map():
             '../datasets/fencing/csv/' + month + '_nac_' + year + '_results.csv')  # ["d", "c", "a", "b", "e"]
         createCompetitionGraph(seeding, results, G, name_map)
     return G, name_map
+
+
+def save_edges_txt():
+    graph, name_map = get_fencing_graph_and_name_map()
+    with open("../datasets/fencing/edges.txt", 'w') as edges:
+        for edge in graph.Edges():
+            x = edge.GetSrcNId()
+            y = edge.GetDstNId()
+            edges.write(str(x) + ";" + str(y) + "\n")
+
+
+def save_dict():
+    graph, name_map = get_fencing_graph_and_name_map()
+    with open("../datasets/fencing/fencing_ids.pkl", 'wb') as f:
+        pickle.dump(name_map, f, pickle.HIGHEST_PROTOCOL)
+
+if __name__ == '__main__':
+    save_dict()

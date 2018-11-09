@@ -1,18 +1,18 @@
 Tennis ATP Men: Directed Multigraph
-  Nodes:                    6832
-  Edges:                    36387
+  Nodes:                    270
+  Edges:                    630
   Zero Deg Nodes:           0
-  Zero InDeg Nodes:         1668
-  Zero OutDeg Nodes:        529
-  NonZero In-Out Deg Nodes: 4635
-  Unique directed edges:    34562
-  Unique undirected edges:  33652
+  Zero InDeg Nodes:         119
+  Zero OutDeg Nodes:        0
+  NonZero In-Out Deg Nodes: 151
+  Unique directed edges:    625
+  Unique undirected edges:  623
   Self Edges:               0
-  BiDir Edges:              2133
-  Closed triangles:         2778
-  Open triangles:           1122299
-  Frac. of closed triads:   0.002469
-  Connected component size: 0.968384
-  Strong conn. comp. size:  0.603191
-  Approx. full diameter:    12
-  90% effective diameter:  5.291652
+  BiDir Edges:              4
+  Closed triangles:         12
+  Open triangles:           4972
+  Frac. of closed triads:   0.002408
+  Connected component size: 1.000000
+  Strong conn. comp. size:  0.381481
+  Approx. full diameter:    7
+  90% effective diameter:  4.558302
