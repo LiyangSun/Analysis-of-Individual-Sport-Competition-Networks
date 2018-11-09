@@ -39,11 +39,11 @@ def network_distance(g1, g2, weights_path_1, weights_path_2, in_degree=True):
     """Return the distance between graphs g1 and g2 defined by the functions above"""
     n1 = g1.GetNodes()
     n2 = g2.GetNodes()
-    n = min(g1, g2)
+    n = min(n1, n2)
     _, ev1 = mx.sorted_laplacian_eigen(g1, weights_path_1, in_degree)
     _, ev2 = mx.sorted_laplacian_eigen(g2, weights_path_2, in_degree)
     dist = 0
     for i in range(n):
         dist += distribution_kruglov_distance(ev1[:, i], ev2[:, i])
-    dist = dist / (n - 1)
+    dist = dist / n
     return dist

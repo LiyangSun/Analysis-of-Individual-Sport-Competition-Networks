@@ -12,4 +12,5 @@ if __name__ == '__main__':
         graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
 
-        # util.out_deg_distribution(graph, "tennisATPwomen")
+        # util.out_deg_distribution(graph, "tenniswomen")
+        # util.in_deg_distribution(graph, "tenniswomen")

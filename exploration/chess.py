@@ -16,7 +16,7 @@ if __name__ == '__main__':
         graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
 
-        ov.quick_properties(graph, "Chess", dic_path)
+        # ov.quick_properties(graph, "Chess", dic_path)
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)
@@ -24,9 +24,9 @@ if __name__ == '__main__':
         # sr.sim_node_max(7848, rec_features, dic_path)
         # sr.plot_sim_hist(7848, rec_features, dic_path, bin_width=30)
 
-        # bsf.cumul_BFS(graph, "tennis")
+        # bsf.cumul_BFS(graph, "chess")
         # bsf.bowtie_components(graph, "tennis")
-        # bsf.path_proba(graph, "tennis")
+        # bsf.path_proba(graph, "tennis", 10000)
 
         # sim.JA_similarity_max(graph_directed, 7848, dic_path, directed=True)
         # sim.CN_similarity_max(graph_directed, 7848, dic_path, directed=True)
@@ -49,17 +49,19 @@ if __name__ == '__main__':
         # effective diameter (90-th percentile of the distribution of shortest path lengths)
         # full diameter (longest-shortest path)
         # avg shortest path length
-        # print snap.GetBfsEffDiamAll(graph, 100, True)
+        # print snap.GetBfsEffDiamAll(graph, 10000, True)
 
         # Uses the Clauset/Newman/Moore community detection method for large networks.
         # At every step of the algo two communities that contribute max positive value to global modularity are merged.
         # Fills CmtyV with all the communities detected and returns the modularity of the network.
-        # CmtyV = snap.TCnComV()
-        # print(snap.CommunityCNM(graph_undirected, CmtyV))
+        CmtyV = snap.TCnComV()
+        print(snap.CommunityCNM(graph_undirected, CmtyV))
+        print(CmtyV.Len())
 
         # Same but with Girvan/Newman method
-        # CmtyV = snap.TCnComV()
-        # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
+        CmtyV = snap.TCnComV()
+        print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
+        print(CmtyV.Len())
 
         # print snap.GetClustCf(graph)
 
