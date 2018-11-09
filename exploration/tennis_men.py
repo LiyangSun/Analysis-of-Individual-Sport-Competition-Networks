@@ -14,11 +14,11 @@ if __name__ == '__main__':
         mydict = pickle.load(dic_id)
         txt_path = "../datasets/tennis/ATP/men/edges.txt"
         utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
-        # graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
         # graph_undirected = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
         # graph_directed = snap.LoadEdgeList(snap.PNGraph, utxt_path, 0, 1, ';')
 
-        # ov.quick_properties(graph_undirected, "Tennis ATP Men", dic_path)
+        ov.quick_properties(graph, "Tennis ATP Men", dic_path)
         # ov.quick_properties(graph_directed, "Tennis ATP Men", dic_path)
 
         # features = sr.basic_features(graph, True)
