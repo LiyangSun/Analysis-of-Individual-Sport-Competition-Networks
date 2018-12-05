@@ -1,5 +1,8 @@
 import snap
 import pickle
+from os import listdir
+from os.path import isfile
+import utils.time_evolution as evol
 import utils.overview as ov
 import utils.structural_role as sr
 import utils.bfs as bsf
@@ -15,6 +18,13 @@ if __name__ == '__main__':
         graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
         graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+
+        graphs_time = []
+        time_txt_path = "../datasets/chess/evolution/"
+        for f in sorted(listdir(time_txt_path)):
+            if isfile(time_txt_path + f):
+                graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path + f, 0, 1, ';'))
+        evol.density_evolution(graphs_time, "test", "10-months")
 
         # ov.quick_properties(graph, "Chess", dic_path)
 

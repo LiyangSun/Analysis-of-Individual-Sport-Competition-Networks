@@ -1,10 +1,13 @@
 import snap
 import pickle
+from os import listdir
+from os.path import isfile
 import utils.overview as ov
 import utils.structural_role as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
+import utils.time_evolution as evol
 
 
 if __name__ == '__main__':
@@ -15,6 +18,13 @@ if __name__ == '__main__':
         graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
         graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+
+        graphs_time = []
+        time_txt_path = "../datasets/tennis/ATP/women/evolution/"
+        for f in sorted(listdir(time_txt_path)):
+            if isfile(time_txt_path + f):
+                graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path + f, 0, 1, ';'))
+        evol.density_evolution(graphs_time, "test", "years")
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
 

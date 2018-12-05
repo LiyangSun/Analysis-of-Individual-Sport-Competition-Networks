@@ -1,11 +1,14 @@
 import snap
 import pickle
+from os import listdir
+from os.path import isfile
 import utils.overview as ov
 import utils.structural_role as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
 import utils.load as ld
+import utils.time_evolution as evol
 
 
 if __name__ == '__main__':
@@ -14,9 +17,19 @@ if __name__ == '__main__':
         mydict = pickle.load(dic_id)
         txt_path = "../datasets/tennis/ATP/men/edges.txt"
         utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
-        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
+        # graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+        # graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         # graph_directed = snap.LoadEdgeList(snap.PNGraph, utxt_path, 0, 1, ';')
+
+        # print(graph.GetEdges(), graph_undirected.GetEdges(), graph_directed.GetEdges())
+
+        graphs_time = []
+        time_txt_path = "../datasets/tennis/ATP/men/evolution/"
+        for f in sorted(listdir(time_txt_path)):
+            if isfile(time_txt_path + f):
+                graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path+f, 0, 1, ';'))
+        # evol.density_evolution(graphs_time, "test", "years")
+        evol.clust_evolution(graphs_time, "test", "years")
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
         # ov.quick_properties(graph_directed, "Tennis ATP Men", dic_path)
@@ -57,15 +70,15 @@ if __name__ == '__main__':
         # Uses the Clauset/Newman/Moore community detection method for large networks.
         # At every step of the algo two communities that contribute max positive value to global modularity are merged.
         # Fills CmtyV with all the communities detected and returns the modularity of the network.
-        CmtyV = snap.TCnComV()
-        print(snap.CommunityCNM(graph_undirected, CmtyV))
-        print(CmtyV.Len())
+        # CmtyV = snap.TCnComV()
+        # print(snap.CommunityCNM(graph_undirected, CmtyV))
+        # print(CmtyV.Len())
 
         # Same but with Girvan/Newman method
         # CmtyV = snap.TCnComV()
         # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
 
-        print snap.GetClustCf(graph)
+        # print snap.GetClustCf(graph)
 
         # Get nb of triads, subgraphs formed by 3 nodes
         # print snap.GetTriads(graph)
