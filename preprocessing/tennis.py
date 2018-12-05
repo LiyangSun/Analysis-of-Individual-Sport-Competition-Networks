@@ -72,6 +72,32 @@ def get_weights(csv_dir, dic_path, weights_path):
         pickle.dump(weights_dic, f, pickle.HIGHEST_PROTOCOL)
 
 
+def get_single_weights(csv_dir, csv_file, dic_path, weights_path):
+    """Save a dictionary {edges: weights} from csv_dir and dic_path into weights_path for file csv_file"""
+    weights_dic = {}
+    try:
+        my_abs_path = Path(weights_path).resolve()
+    except OSError as e:
+        pass
+    else:
+        with open(weights_path, 'rb') as f:
+            weights_dic = pickle.load(f)
+
+    with open(dic_path, 'rb') as dic_id:
+        name_dic = pickle.load(dic_id)
+        df = pd.read_csv(csv_dir + csv_file, header=0)
+        for w, l in zip(list(df.loc[:, 'Winner'].values), list(df.loc[:, 'Loser'].values)):
+            w_id = name_dic[w]
+            l_id = name_dic[l]
+            if (l_id, w_id) not in weights_dic.keys():
+                weights_dic[(l_id, w_id)] = 1
+            else:
+                weights_dic[(l_id, w_id)] += 1
+
+    with open(weights_path, 'wb') as f:
+        pickle.dump(weights_dic, f, pickle.HIGHEST_PROTOCOL)
+
+
 if __name__ == '__main__':
     dic_men_path = "../datasets/tennis/men_ids.pkl"
     dic_women_path = "../datasets/tennis/women_ids.pkl"
@@ -90,10 +116,14 @@ if __name__ == '__main__':
     # utils.player_dictionary(women_csv_path, dic_women_path, 'Winner', 'Loser', True)
     # get_edges_txt(women_csv_path, dic_women_path, "../datasets/tennis/ATP/women/edges.txt")
     # get_weights(women_csv_path, dic_women_path, "../datasets/tennis/ATP/women/weights.pkl")
-    # utils.get_uniq_edges_txt("../datasets/tennis/ATP/women/weights.pkl", "../datasets/tennis/ATP/women/uniq_edges.txt")
+    # utils.get_uniq_edges_txt("../datasets/tennis/ATP/women/weights.pkl",
+    #                          "../datasets/tennis/ATP/women/uniq_edges.txt")
 
     # Creating graphs for time evolution analysis
     # for f in listdir(men_csv_path):
     #     get_single_edges_txt(men_csv_path, f, dic_men_path, men_csv_path[:-4] + "evolution/" + f[:-3] + "txt")
+    #     get_single_weights(men_csv_path, f, dic_men_path, men_csv_path[:-4] + "evolution/weights/" + f[:-3] + "pkl")
     # for f in listdir(women_csv_path):
     #     get_single_edges_txt(women_csv_path, f, dic_women_path, women_csv_path[:-4] + "evolution/" + f[:-3] + "txt")
+    #     get_single_weights(women_csv_path, f, dic_women_path,
+    #                        women_csv_path[:-4] + "evolution/weights/" + f[:-3] + "pkl")

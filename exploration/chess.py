@@ -24,7 +24,7 @@ if __name__ == '__main__':
         # sr.sim_node_max(7848, rec_features, dic_path)
         # sr.plot_sim_hist(7848, rec_features, dic_path, bin_width=30)
 
-        bsf.cumul_BFS(graph, "chess", 1000)
+        # bsf.cumul_BFS(graph, "chess", 1000)
         # bsf.bowtie_components(graph, "tennis")
         # bsf.path_proba(graph, "tennis", 10000)
 
