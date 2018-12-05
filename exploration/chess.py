@@ -24,7 +24,7 @@ if __name__ == '__main__':
         # sr.sim_node_max(7848, rec_features, dic_path)
         # sr.plot_sim_hist(7848, rec_features, dic_path, bin_width=30)
 
-        # bsf.cumul_BFS(graph, "chess")
+        bsf.cumul_BFS(graph, "chess", 1000)
         # bsf.bowtie_components(graph, "tennis")
         # bsf.path_proba(graph, "tennis", 10000)
 
@@ -54,14 +54,14 @@ if __name__ == '__main__':
         # Uses the Clauset/Newman/Moore community detection method for large networks.
         # At every step of the algo two communities that contribute max positive value to global modularity are merged.
         # Fills CmtyV with all the communities detected and returns the modularity of the network.
-        CmtyV = snap.TCnComV()
-        print(snap.CommunityCNM(graph_undirected, CmtyV))
-        print(CmtyV.Len())
+        # CmtyV = snap.TCnComV()
+        # print(snap.CommunityCNM(graph_undirected, CmtyV))
+        # print(CmtyV.Len())
 
         # Same but with Girvan/Newman method
-        CmtyV = snap.TCnComV()
-        print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
-        print(CmtyV.Len())
+        # CmtyV = snap.TCnComV()
+        # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
+        # print(CmtyV.Len())
 
         # print snap.GetClustCf(graph)
 

@@ -2,15 +2,17 @@
 
 import snap
 
+
 def get_unweighted_graph(Graph):
-    UnweightedGraph= snap.TNGraph.New()
+    UnweightedGraph = snap.TNGraph.New()
     for Node in Graph.Nodes():
         UnweightedGraph.AddNode(Node.GetId())
     for Edge in Graph.Edges():
         UnweightedGraph.AddEdge(Edge.GetSrcNId(), Edge.GetDstNId())
     return UnweightedGraph
 
-def count_graph_cycles(Graph, max_length = 10):
+
+def count_graph_cycles(Graph, max_length=10):
     '''
     Args:
         graph: TNEANet representing a competitive network
@@ -23,7 +25,7 @@ def count_graph_cycles(Graph, max_length = 10):
     UnweightedGraph = get_unweighted_graph(Graph)
     endpoints = []
     for Node in UnweightedGraph.Nodes():
-        if Node.GetInDeg()==0 or Node.GetOutDeg()==0:
+        if Node.GetInDeg() == 0 or Node.GetOutDeg() == 0:
             endpoints.append(Node.GetId())
     for endpoint in endpoints:
         UnweightedGraph.DelNode(endpoint)
@@ -38,13 +40,14 @@ def count_graph_cycles(Graph, max_length = 10):
                 end_nid = path[-1]
                 for nbr in UnweightedGraph.GetNI(end_nid).GetOutEdges():
                     if nbr == start_nid:
-                        cycle_dict[curr_length] = cycle_dict.get(curr_length,0) + 1
+                        cycle_dict[curr_length] = cycle_dict.get(curr_length, 0) + 1
                     elif nbr not in path:
-                        new_paths.append(path+[nbr])
+                        new_paths.append(path + [nbr])
             paths = new_paths
-            curr_length +=1
+            curr_length += 1
         UnweightedGraph.DelNode(start_nid)
     return cycle_dict
+
 
 def count_pairwise_cycles(Graph):
     '''
@@ -58,7 +61,7 @@ def count_pairwise_cycles(Graph):
     reachable_nodes_map = {}
     endpoints = []
     for Node in UG.Nodes():
-        if Node.GetInDeg()==0 or Node.GetOutDeg()==0:
+        if Node.GetInDeg() == 0 or Node.GetOutDeg() == 0:
             endpoints.append(Node.GetId())
     for endpoint in endpoints:
         UG.DelNode(endpoint)
@@ -67,18 +70,19 @@ def count_pairwise_cycles(Graph):
         reachable_nodes_map[nid] = get_reachable_nodes(UG, nid)
     node_cycle_count = {}
     for i in range(len(nids)):
-        for j in range(i+1, len(nids)):
+        for j in range(i + 1, len(nids)):
             node_a = nids[i]
             node_b = nids[j]
             if node_a in reachable_nodes_map[node_b] and node_b in reachable_nodes_map[node_a]:
-                node_cycle_count[node_a] = node_cycle_count.get(node_a, 0)+1
-                node_cycle_count[node_b] = node_cycle_count.get(node_b, 0)+1
+                node_cycle_count[node_a] = node_cycle_count.get(node_a, 0) + 1
+                node_cycle_count[node_b] = node_cycle_count.get(node_b, 0) + 1
     return node_cycle_count
+
 
 def get_reachable_nodes(UG, nid):
     reachable_nodes = set([nid])
     frontier = set([nid])
-    while len(frontier)>0:
+    while len(frontier) > 0:
         new_frontier = set([])
         for node in frontier:
             for nbr in UG.GetNI(node).GetOutEdges():

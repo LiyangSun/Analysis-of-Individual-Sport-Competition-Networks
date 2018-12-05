@@ -9,7 +9,7 @@ def quick_properties(graph, name, dic_path):
     print("##########")
     print("Quick overview of {} Network".format(name))
     print("##########")
-    print("{} Nodes, {} Edges").format(n_nodes, n_edges)
+    print("{} Nodes, {} Edges".format(n_nodes, n_edges))
     print("{} Self-edges ".format(snap.CntSelfEdges(graph)))
     print("{} Directed edges, {} Undirected edges".format(snap.CntUniqDirEdges(graph),
                                                           snap.CntUniqUndirEdges(graph)))

@@ -32,6 +32,19 @@ def get_edges_txt(csv_dir, dic_path, edges_path):
                     edges.write(str(l_id) + ";" + str(w_id) + "\n")
 
 
+def get_single_edges_txt(csv_dir, csv_file, dic_path, edges_path):
+    """Get a single txt file with all match results in csv_file, which is in directory csv_dir.
+    First column is loser id, second is winner id"""
+    with open(dic_path, 'rb') as dic_id:
+        dic = pickle.load(dic_id)
+        with open(edges_path, 'w') as edges:
+            df = pd.read_csv(csv_dir + csv_file, header=0)
+            for w, l in zip(list(df.loc[:, 'Winner'].values), list(df.loc[:, 'Loser'].values)):
+                w_id = dic[w]
+                l_id = dic[l]
+                edges.write(str(l_id) + ";" + str(w_id) + "\n")
+
+
 def get_weights(csv_dir, dic_path, weights_path):
     """Save a dictionary {edges: weights} from csv_dir and dic_path into weights_path"""
     weights_dic = {}
@@ -78,3 +91,9 @@ if __name__ == '__main__':
     # get_edges_txt(women_csv_path, dic_women_path, "../datasets/tennis/ATP/women/edges.txt")
     # get_weights(women_csv_path, dic_women_path, "../datasets/tennis/ATP/women/weights.pkl")
     # utils.get_uniq_edges_txt("../datasets/tennis/ATP/women/weights.pkl", "../datasets/tennis/ATP/women/uniq_edges.txt")
+
+    # Creating graphs for time evolution analysis
+    # for f in listdir(men_csv_path):
+    #     get_single_edges_txt(men_csv_path, f, dic_men_path, men_csv_path[:-4] + "evolution/" + f[:-3] + "txt")
+    # for f in listdir(women_csv_path):
+    #     get_single_edges_txt(women_csv_path, f, dic_women_path, women_csv_path[:-4] + "evolution/" + f[:-3] + "txt")

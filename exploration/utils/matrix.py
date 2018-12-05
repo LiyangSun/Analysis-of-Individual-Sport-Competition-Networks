@@ -41,9 +41,9 @@ def laplacian_matrix(graph, weights_path, in_degree=True):
     """Returns the Laplacian matrix defined by: Adj matrix - in/out degree matrix"""
     adj = adjacency_matrix(graph, weights_path)
     if in_degree:
-        return adj - in_deg_matrix(graph)
+        return in_deg_matrix(graph) - adj
     else:
-        return adj - out_deg_matrix(graph)
+        return out_deg_matrix(graph) - adj
 
 
 def sorted_laplacian_eigen(graph, weights_path, in_degree=True):

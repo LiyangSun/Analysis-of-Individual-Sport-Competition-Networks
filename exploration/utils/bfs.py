@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def cumul_BFS(graph, name):
-    """Get 100 random nodes and find the number of nodes in their inward and outward BFS trees.
+def cumul_BFS(graph, name, N=100):
+    """Get n random nodes and find the number of nodes in their inward and outward BFS trees.
     Plot the cumulative number of nodes reached in the BFS runs"""
 
     X_in, X_out = [], []
-    for i in range(100):
+    for i in range(N):
         n = graph.GetRndNId()
 
         g_out = snap.GetBfsTree(graph, n, True, False)
@@ -20,7 +20,7 @@ def cumul_BFS(graph, name):
 
     X_in, X_out = sorted(X_in), sorted(X_out)
 
-    x = np.linspace(0.0, 1.0, 100)
+    x = np.linspace(0.0, 1.0, N)
     plt.subplot(1, 2, 1)
     plt.plot(x, X_in)
     plt.title('Reachability of {} network using inlinks'.format(name))
