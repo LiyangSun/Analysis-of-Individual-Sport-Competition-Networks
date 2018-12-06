@@ -9,6 +9,7 @@ import utils.similarity as sim
 import utils.motif_detection as md
 import utils.load as ld
 import utils.time_evolution as evol
+import utils.temporal_metrics as tmetrics
 
 
 if __name__ == '__main__':
@@ -17,7 +18,7 @@ if __name__ == '__main__':
         mydict = pickle.load(dic_id)
         txt_path = "../datasets/tennis/ATP/men/edges.txt"
         utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
-        # graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
         # graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         # graph_directed = snap.LoadEdgeList(snap.PNGraph, utxt_path, 0, 1, ';')
 
@@ -32,7 +33,11 @@ if __name__ == '__main__':
         # evol.clust_evolution(graphs_time, "test", "years")
         # evol.nodes_evolution(graphs_time, "", "")
         # evol.edges_evolution(graphs_time, "", "")
-        evol.max_scc_evolution(graphs_time, "", "")
+        # evol.max_scc_evolution(graphs_time, "", "")
+        print(tmetrics.temporal_clust_coef(graphs_time, 1))
+        print(tmetrics.temporal_clust_coef(graphs_time, 1, False))
+        print(snap.GetNodeClustCf(graph, 1))
+
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
         # ov.quick_properties(graph_directed, "Tennis ATP Men", dic_path)
