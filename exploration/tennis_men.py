@@ -19,10 +19,10 @@ if __name__ == '__main__':
         txt_path = "../datasets/tennis/ATP/men/edges.txt"
         utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
         graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        # graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
-        # graph_directed = snap.LoadEdgeList(snap.PNGraph, utxt_path, 0, 1, ';')
+        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
+        graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
 
-        # print(graph.GetEdges(), graph_undirected.GetEdges(), graph_directed.GetEdges())
+        print(graph.GetEdges(), graph_undirected.GetEdges(), graph_directed.GetEdges())
 
         graphs_time = []
         time_txt_path = "../datasets/tennis/ATP/men/evolution/"
@@ -34,9 +34,9 @@ if __name__ == '__main__':
         # evol.nodes_evolution(graphs_time, "", "")
         # evol.edges_evolution(graphs_time, "", "")
         # evol.max_scc_evolution(graphs_time, "", "")
-        print(tmetrics.temporal_clust_coef(graphs_time, 1))
-        print(tmetrics.temporal_clust_coef(graphs_time, 1, False))
-        print(snap.GetNodeClustCf(graph, 1))
+        # print(tmetrics.temporal_clust_coef(graphs_time, 1))
+        # print(tmetrics.temporal_clust_coef(graphs_time, 1, False))
+        # print(snap.GetNodeClustCf(graph, 1))
 
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)

@@ -28,3 +28,6 @@ def load_weightedgraph(weights_path, uniq_edges_path):
             w = w_dic[(x, y)]
             graph.AddIntAttrDatE(edge, w, attr)
     return graph
+
+#FIn = snap.TFIn("test.graph")
+#G4 = snap.TNGraph.Load(FIn)
