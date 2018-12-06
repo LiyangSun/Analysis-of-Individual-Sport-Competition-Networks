@@ -1,5 +1,5 @@
 import snap
-import utils.distance as dst
+import utils.network_distance as dst
 
 if __name__ == '__main__':
     w1 = "../datasets/tennis/ATP/men/weights.pkl"

@@ -4,7 +4,7 @@ from os import listdir
 from os.path import isfile
 import utils.time_evolution as evol
 import utils.overview as ov
-import utils.structural_role as sr
+import utils.RoIX as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
@@ -19,10 +19,18 @@ if __name__ == '__main__':
         G = load.load_global("chess")
         graphs = load.load_temporal("chess")
 
+        # Time evolution
+        #
+        # evol.density_evolution(graphs, "chess", "10-months")
+        # evol.clust_evolution(graphs, "chess", "10-months")
+        # evol.active_nodes_evolution(graphs, "chess", "10-months")
+        # evol.edges_evolution(graphs, "chess", "10-months")
+        # evol.max_scc_evolution(graphs, "chess", "10-months")
 
-        # evol.density_evolution(graphs_time, "test", "10-months")
-        # evol.clust_evolution(graphs_time, "test", "10-months")
-        # evol.nodes_evolution(graphs_time, "", "")
+
+
+
+
 
         # ov.quick_properties(graph, "Chess", dic_path)
 

@@ -3,7 +3,7 @@ import pickle
 from os import listdir
 from os.path import isfile
 import utils.overview as ov
-import utils.structural_role as sr
+import utils.RoIX as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
@@ -17,6 +17,17 @@ if __name__ == '__main__':
         mydict = pickle.load(dic_id)
         G = load.load_global("tennis_women")
         graphs = load.load_temporal("tennis_women")
+
+        # Time evolution
+        #
+        # evol.density_evolution(graphs, "tenniswomen", "years", duration = [2007, 2018])
+        # evol.clust_evolution(graphs, "tenniswomen", "years", duration = [2007, 2018])
+        # evol.active_nodes_evolution(graphs, "tenniswomen", "years", duration = [2007, 2018])
+        # evol.edges_evolution(graphs, "tenniswomen", "years", duration = [2007, 2018])
+        # evol.max_scc_evolution(graphs, "tenniswomen", "years", duration = [2007, 2018])
+
+
+
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
 
@@ -56,14 +67,14 @@ if __name__ == '__main__':
         # Uses the Clauset/Newman/Moore community detection method for large networks.
         # At every step of the algo two communities that contribute max positive value to global modularity are merged.
         # Fills CmtyV with all the communities detected and returns the modularity of the network.
-        CmtyV = snap.TCnComV()
-        print(snap.CommunityCNM(graph_undirected, CmtyV))
-        print(CmtyV.Len())
+        # CmtyV = snap.TCnComV()
+        # print(snap.CommunityCNM(graph_undirected, CmtyV))
+        # print(CmtyV.Len())
 
         # Same but with Girvan/Newman method
-        CmtyV = snap.TCnComV()
-        print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
-        print(CmtyV.Len())
+        # CmtyV = snap.TCnComV()
+        # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
+        # print(CmtyV.Len())
 
         # print snap.GetClustCf(graph)
 

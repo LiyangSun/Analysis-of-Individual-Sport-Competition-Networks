@@ -1,7 +1,7 @@
 import snap
 import pickle
 import utils.overview as ov
-import utils.structural_role as sr
+import utils.RoIX as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md

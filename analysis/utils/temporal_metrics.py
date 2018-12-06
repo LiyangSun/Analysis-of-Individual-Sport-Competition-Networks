@@ -28,22 +28,27 @@ def temporal_subgraphs(graphs, nodeV):
 
 
 def temporal_clust_coef(graphs, nodeID, directed=True):
-    """Return the temporal clustering coefficient of node nodeID during graphs"""
+    """Return the temporal clustering coefficient of node nodeID during graphs based on Watts-Strogatz definition"""
     t_neighbors = temporal_neighbors(graphs, nodeID, directed)
     subgraphs = temporal_subgraphs(graphs, t_neighbors)
     d = len(subgraphs)
     t_degree = t_neighbors.Len()
     c = 0
-    for s in subgraphs:
-        c += s.GetEdges()
-    if directed:
-        return c/(d*t_degree*(t_degree-1))
+    if t_degree == 0:
+        return c
+    elif t_degree == 1:
+        return c
     else:
-        return 2*c/(d*t_degree*(t_degree-1))
+        for s in subgraphs:
+            c += s.GetEdges()
+        if directed:
+            return c/(d*t_degree*(t_degree-1))
+        else:
+            return 2*c/(d*t_degree*(t_degree-1))
 
 
 def charac_temporal_clust_coef(graphs, directed=True):
-    """Return the average temporal clustering coefficient of graphs"""
+    """Return the average temporal clustering coefficient of graphs based on Watts-Strogatz definition"""
     c = 0
     for node in graphs[0].Nodes():
         nodeID = node.GetId()

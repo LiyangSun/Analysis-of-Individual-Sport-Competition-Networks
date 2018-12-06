@@ -14,7 +14,7 @@ def visualize_networkx(graph_networkx, name):
     """Visualize a NetworkX graph and saves a plot under the name name"""
     plt.figure(0)
     nx.draw(graph_networkx, with_labels=True)
-    plt.savefig(name)
+    plt.show()
 
 
 def visualize_graphviz(graph, name, dic_path):

@@ -3,7 +3,7 @@ import pickle
 from os import listdir
 from os.path import isfile
 import utils.overview as ov
-import utils.structural_role as sr
+import utils.RoIX as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
@@ -19,11 +19,17 @@ if __name__ == '__main__':
         mydict = pickle.load(dic_id)
         G = load.load_global("tennis_men")
         graphs = load.load_temporal("tennis_men", multi=False)
-        # evol.density_evolution(graphs_time, "test", "years")
-        # evol.clust_evolution(graphs_time, "test", "years")
-        # evol.nodes_evolution(graphs_time, "", "")
-        # evol.edges_evolution(graphs_time, "", "")
-        # evol.max_scc_evolution(graphs_time, "", "")
+
+        # Time evolution
+        #
+        # evol.density_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
+        # evol.clust_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
+        # evol.active_nodes_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
+        # evol.edges_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
+        # evol.max_scc_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
+
+
+
         # print(tmetrics.temporal_clust_coef(graphs_time, 1))
         # print(tmetrics.temporal_clust_coef(graphs_time, 1, False))
         # print(snap.GetNodeClustCf(graph, 1))

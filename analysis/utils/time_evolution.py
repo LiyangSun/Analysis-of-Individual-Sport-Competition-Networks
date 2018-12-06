@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import snap
 
 
-def density_evolution(graphs, name, time_units, directed=True):
+def density_evolution(graphs, name, time_units, directed=True, verbose=False, duration=None):
     """Plot the time evolution of the density of snap graph in graphs"""
     Y = []
     for g in graphs:
@@ -13,57 +13,82 @@ def density_evolution(graphs, name, time_units, directed=True):
             Y.append(e / (n * (n - 1)))
         else:
             Y.append(2 * e / (n * (n - 1)))
-    plt.plot(Y)
+    X = range(len(Y))
+    if duration is not None:
+        X = range(duration[0], duration[1]+1)
+    plt.plot(X, Y)
     plt.xlabel("Time in {}".format(time_units))
     plt.ylabel("Density")
-    plt.title(name)
-    plt.show()
+    plt.title("Density evolution of {} graphs".format(name))
+    plt.savefig("density_time_{}".format(name))
+    if verbose:
+        plt.show()
 
 
-def clust_evolution(graphs, name, time_units):
-    """Plot the time evolution of the avg clustring coefficient of snap graph in graphs"""
+def clust_evolution(graphs, name, time_units, verbose=False, duration=None):
+    """Plot the time evolution of the avg clustering coefficient (Watts Strogatz definition) of snap graph in graphs"""
     Y = []
     for g in graphs:
         Y.append(snap.GetClustCf(g))
-    plt.plot(Y)
+    X = range(len(Y))
+    if duration is not None:
+        X = range(duration[0], duration[1]+1)
+    plt.plot(X, Y)
     plt.xlabel("Time in {}".format(time_units))
     plt.ylabel("Avg Clustering Coefficient")
-    plt.title(name)
-    plt.show()
+    plt.title("Avg Clustering coefficient of {} graphs".format(name))
+    plt.savefig("clust_time_{}".format(name))
+    if verbose:
+        plt.show()
 
 
-def nodes_evolution(graphs, name, time_units):
-    """Plot the time evolution of the number of nodes of snap graph in graphs"""
+def active_nodes_evolution(graphs, name, time_units, verbose=False, duration=None):
+    """Plot the time evolution of the number of nodes with degree of at least one of snap graph in graphs"""
     Y = []
     for g in graphs:
-        Y.append(g.GetNodes())
-    plt.plot(Y)
+        Y.append(g.GetNodes()-snap.CntInDegNodes(g, 0)-snap.CntOutDegNodes(g, 0))
+    X = range(len(Y))
+    if duration is not None:
+        X = range(duration[0], duration[1]+1)
+    plt.plot(X, Y)
     plt.xlabel("Time in {}".format(time_units))
-    plt.ylabel("Number of nodes")
-    plt.title(name)
-    plt.show()
+    plt.ylabel("Number of active nodes")
+    plt.title("Active nodes evolution of {} graphs".format(name))
+    plt.savefig("nodes_time_{}".format(name))
+    if verbose:
+        plt.show()
 
 
-def edges_evolution(graphs, name, time_units):
+def edges_evolution(graphs, name, time_units, verbose=False, duration=None):
     """Plot the time evolution of the number of edges of snap graph in graphs"""
     Y = []
     for g in graphs:
         Y.append(g.GetEdges())
-    plt.plot(Y)
+    X = range(len(Y))
+    if duration is not None:
+        X = range(duration[0], duration[1]+1)
+    plt.plot(X, Y)
     plt.xlabel("Time in {}".format(time_units))
     plt.ylabel("Number of edges")
-    plt.title(name)
-    plt.show()
+    plt.title("Edges evolution of {} graphs".format(name))
+    plt.savefig("edges_time_{}".format(name))
+    if verbose:
+        plt.show()
 
 
-def max_scc_evolution(graphs, name, time_units):
-    """Plot the time evolution of the number of nodes in the largest CC of snap graph in graphs"""
+def max_scc_evolution(graphs, name, time_units, verbose=False, duration=None):
+    """Plot the time evolution of the number of nodes in the largest SCC of snap graph in graphs"""
     Y = []
     for g in graphs:
         scc = snap.GetMxScc(g)
         Y.append(scc.GetNodes())
-    plt.plot(Y)
+    X = range(len(Y))
+    if duration is not None:
+        X = range(duration[0], duration[1]+1)
+    plt.plot(X, Y)
     plt.xlabel("Time in {}".format(time_units))
-    plt.ylabel("Number of edges")
-    plt.title(name)
-    plt.show()
+    plt.ylabel("Number of nodes in largest SCC")
+    plt.title("SCC nodes evolution of {} graphs".format(name))
+    plt.savefig("SCCnodes_time_{}".format(name))
+    if verbose:
+        plt.show()
