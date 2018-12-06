@@ -1,9 +1,23 @@
 import graphviz
 import pickle
 import snap
+import networkx as nx
+import matplotlib.pyplot as plt
 
 
-def visualize(graph, name, dic_path):
+def load_graph_networkx(edges_path):
+    """Same but with NetworkX"""
+    return nx.read_edgelist(edges_path, delimiter=";")
+
+
+def visualize_networkx(graph_networkx, name):
+    """Visualize a NetworkX graph and saves a plot under the name name"""
+    plt.figure(0)
+    nx.draw(graph_networkx, with_labels=True)
+    plt.savefig(name)
+
+
+def visualize_graphviz(graph, name, dic_path):
     """Visualize the graph using Graphviz"""
     dot = graphviz.Digraph(comment=name)
     with open(dic_path, 'rb') as dic_id:

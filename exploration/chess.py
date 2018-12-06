@@ -24,7 +24,9 @@ if __name__ == '__main__':
         for f in sorted(listdir(time_txt_path)):
             if isfile(time_txt_path + f):
                 graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path + f, 0, 1, ';'))
-        evol.density_evolution(graphs_time, "test", "10-months")
+        # evol.density_evolution(graphs_time, "test", "10-months")
+        # evol.clust_evolution(graphs_time, "test", "10-months")
+        evol.nodes_evolution(graphs_time, "", "")
 
         # ov.quick_properties(graph, "Chess", dic_path)
 

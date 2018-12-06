@@ -29,7 +29,10 @@ if __name__ == '__main__':
             if isfile(time_txt_path + f):
                 graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path+f, 0, 1, ';'))
         # evol.density_evolution(graphs_time, "test", "years")
-        evol.clust_evolution(graphs_time, "test", "years")
+        # evol.clust_evolution(graphs_time, "test", "years")
+        # evol.nodes_evolution(graphs_time, "", "")
+        # evol.edges_evolution(graphs_time, "", "")
+        evol.max_scc_evolution(graphs_time, "", "")
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
         # ov.quick_properties(graph_directed, "Tennis ATP Men", dic_path)
