@@ -8,23 +8,15 @@ import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
 import utils.time_evolution as evol
+import utils.load as load
 
 
 if __name__ == '__main__':
     dic_path = "../datasets/tennis/women_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/tennis/ATP/women/edges.txt"
-        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
-        graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
-
-        graphs_time = []
-        time_txt_path = "../datasets/tennis/ATP/women/evolution/"
-        for f in sorted(listdir(time_txt_path)):
-            if isfile(time_txt_path + f):
-                graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path + f, 0, 1, ';'))
-        evol.density_evolution(graphs_time, "test", "years")
+        G = load.load_global("tennis_women")
+        graphs = load.load_temporal("tennis_women")
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
 

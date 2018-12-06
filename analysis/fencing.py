@@ -5,16 +5,14 @@ import utils.structural_role as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
+import utils.load as load
 
 
 if __name__ == '__main__':
     dic_path = "../datasets/fencing/fencing_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/fencing/edges.txt"
-        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
-        graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+        G = load.load_global("chess")
 
         # ov.quick_properties(graph, "Fencing", dic_path)
 

@@ -8,25 +8,21 @@ import utils.structural_role as sr
 import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
+import utils.temporal_metrics as tmetrics
+import utils.load as load
 
 
 if __name__ == '__main__':
     dic_path = "../datasets/chess/chess_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/chess/edges.txt"
-        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
-        graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+        G = load.load_global("chess")
+        graphs = load.load_temporal("chess")
 
-        graphs_time = []
-        time_txt_path = "../datasets/chess/evolution/"
-        for f in sorted(listdir(time_txt_path)):
-            if isfile(time_txt_path + f):
-                graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path + f, 0, 1, ';'))
+
         # evol.density_evolution(graphs_time, "test", "10-months")
         # evol.clust_evolution(graphs_time, "test", "10-months")
-        evol.nodes_evolution(graphs_time, "", "")
+        # evol.nodes_evolution(graphs_time, "", "")
 
         # ov.quick_properties(graph, "Chess", dic_path)
 

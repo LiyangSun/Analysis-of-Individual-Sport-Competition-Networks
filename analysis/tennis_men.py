@@ -10,25 +10,15 @@ import utils.motif_detection as md
 import utils.load as ld
 import utils.time_evolution as evol
 import utils.temporal_metrics as tmetrics
+import utils.load as load
 
 
 if __name__ == '__main__':
     dic_path = "../datasets/tennis/men_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/tennis/ATP/men/edges.txt"
-        utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
-        graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
-        graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
-
-        print(graph.GetEdges(), graph_undirected.GetEdges(), graph_directed.GetEdges())
-
-        graphs_time = []
-        time_txt_path = "../datasets/tennis/ATP/men/evolution/"
-        for f in sorted(listdir(time_txt_path)):
-            if isfile(time_txt_path + f):
-                graphs_time.append(snap.LoadEdgeList(snap.PNEANet, time_txt_path+f, 0, 1, ';'))
+        G = load.load_global("tennis_men")
+        graphs = load.load_temporal("tennis_men", multi=False)
         # evol.density_evolution(graphs_time, "test", "years")
         # evol.clust_evolution(graphs_time, "test", "years")
         # evol.nodes_evolution(graphs_time, "", "")
