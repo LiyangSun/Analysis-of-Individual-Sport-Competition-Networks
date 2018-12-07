@@ -10,6 +10,7 @@ import utils.similarity as sim
 import utils.motif_detection as md
 import utils.temporal_metrics as tmetrics
 import utils.load as load
+import utils.visualization as visu
 
 
 if __name__ == '__main__':
@@ -28,9 +29,15 @@ if __name__ == '__main__':
         # evol.max_scc_evolution(graphs, "chess", "10-months")
         # evol.alternate_clust_evolution(graphs, "chess", "10-months")
 
+        # Visualization global
+        #
+        # nxgraph = visu.load_graph_networkx("../datasets/chess/uniq_edges.txt")
+        # visu.visualize_networkx(nxgraph, "chess")
 
-
-
+        # Temporal metrics
+        #
+        print(tmetrics.charac_temporal_clust_coef(graphs))
+        print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
 
         # ov.quick_properties(graph, "Chess", dic_path)

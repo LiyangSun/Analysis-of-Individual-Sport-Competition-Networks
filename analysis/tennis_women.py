@@ -9,6 +9,8 @@ import utils.similarity as sim
 import utils.motif_detection as md
 import utils.time_evolution as evol
 import utils.load as load
+import utils.visualization as visu
+import utils.temporal_metrics as tmetrics
 
 
 if __name__ == '__main__':
@@ -27,7 +29,15 @@ if __name__ == '__main__':
         # evol.max_scc_evolution(graphs, "tenniswomen", "years", duration = [2007, 2018])
         # evol.alternate_clust_evolution(graphs, "tenniswomen", "years", duration=[2007, 2018])
 
+        # Visualization global
+        #
+        # nxgraph = visu.load_graph_networkx("../datasets/tennis/ATP/women/uniq_edges.txt")
+        # visu.visualize_networkx(nxgraph, "tenniswomen")
 
+        # Temporal metrics
+        #
+        print(tmetrics.charac_temporal_clust_coef(graphs))
+        print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
 
         # ov.quick_properties(graph, "Tennis ATP Men", dic_path)

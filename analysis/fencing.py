@@ -6,6 +6,7 @@ import utils.bfs as bsf
 import utils.similarity as sim
 import utils.motif_detection as md
 import utils.load as load
+import utils.visualization as visu
 
 
 if __name__ == '__main__':
@@ -13,6 +14,13 @@ if __name__ == '__main__':
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         G = load.load_global("chess")
+
+        # Visualization global
+        #
+        # nxgraph = visu.load_graph_networkx("../datasets/fencing/edges.txt")
+        # visu.visualize_networkx(nxgraph, "fencing")
+
+
 
         # ov.quick_properties(graph, "Fencing", dic_path)
 

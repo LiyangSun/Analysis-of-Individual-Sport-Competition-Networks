@@ -11,6 +11,7 @@ import utils.load as ld
 import utils.time_evolution as evol
 import utils.temporal_metrics as tmetrics
 import utils.load as load
+import utils.visualization as visu
 
 
 if __name__ == '__main__':
@@ -29,6 +30,16 @@ if __name__ == '__main__':
         # evol.max_scc_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
         # evol.alternate_clust_evolution(graphs, "tennismen", "years", duration=[2000, 2018])
 
+        # Visualization global
+        #
+        # nxgraph = visu.load_graph_networkx("../datasets/tennis/ATP/men/uniq_edges.txt")
+        # visu.visualize_networkx(nxgraph, "tennismen")
+        # visu.in_deg_distribution(graphs[0], "test")
+
+        # Temporal metrics
+        #
+        print(tmetrics.charac_temporal_clust_coef(graphs))
+        print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
 
         # print(tmetrics.temporal_clust_coef(graphs_time, 1))
