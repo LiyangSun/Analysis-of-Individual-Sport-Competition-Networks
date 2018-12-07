@@ -17,7 +17,7 @@ if __name__ == '__main__':
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         G = load.load_global("chess")
-        graphs = load.load_temporal("chess")
+        graphs = load.load_temporal("chess", multi=False)
 
         # Time evolution
         #
@@ -26,6 +26,7 @@ if __name__ == '__main__':
         # evol.active_nodes_evolution(graphs, "chess", "10-months")
         # evol.edges_evolution(graphs, "chess", "10-months")
         # evol.max_scc_evolution(graphs, "chess", "10-months")
+        # evol.alternate_clust_evolution(graphs, "chess", "10-months")
 
 
 

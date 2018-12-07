@@ -29,7 +29,7 @@ def temporal_subgraphs(graphs, nodeV):
 
 def temporal_clust_coef(graphs, nodeID, directed=True):
     """Return the temporal clustering coefficient of node nodeID during graphs based on Watts-Strogatz definition"""
-    t_neighbors = temporal_neighbors(graphs, nodeID, directed)
+    t_neighbors = temporal_neighbors(graphs, nodeID, False)
     subgraphs = temporal_subgraphs(graphs, t_neighbors)
     d = len(subgraphs)
     t_degree = t_neighbors.Len()

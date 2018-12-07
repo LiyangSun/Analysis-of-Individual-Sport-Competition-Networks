@@ -61,7 +61,7 @@ if __name__ == '__main__':
         # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
         # print(CmtyV.Len())
 
-        print snap.GetClustCf(graph)
+        # print snap.GetClustCf(graph)
 
         # Get nb of triads, subgraphs formed by 3 nodes
         # print snap.GetTriads(graph)

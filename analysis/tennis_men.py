@@ -27,6 +27,7 @@ if __name__ == '__main__':
         # evol.active_nodes_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
         # evol.edges_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
         # evol.max_scc_evolution(graphs, "tennismen", "years", duration = [2000, 2018])
+        # evol.alternate_clust_evolution(graphs, "tennismen", "years", duration=[2000, 2018])
 
 
 

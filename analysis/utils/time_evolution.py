@@ -1,6 +1,7 @@
 from __future__ import division
 import matplotlib.pyplot as plt
 import snap
+from clustering import alternative_clust
 
 
 def density_evolution(graphs, name, time_units, directed=True, verbose=False, duration=None):
@@ -42,11 +43,28 @@ def clust_evolution(graphs, name, time_units, verbose=False, duration=None):
         plt.show()
 
 
+def alternate_clust_evolution(graphs, name, time_units, verbose=False, duration=None):
+    """Plot the time evolution of the alternate avg clustering coefficient of snap graph in graphs"""
+    Y = []
+    for g in graphs:
+        Y.append(alternative_clust(g))
+    X = range(len(Y))
+    if duration is not None:
+        X = range(duration[0], duration[1]+1)
+    plt.plot(X, Y)
+    plt.xlabel("Time in {}".format(time_units))
+    plt.ylabel("Alternate Clustering Coefficient")
+    plt.title("Alternate Clustering coefficient of {} graphs".format(name))
+    plt.savefig("clustAlt_time_{}".format(name))
+    if verbose:
+        plt.show()
+
+
 def active_nodes_evolution(graphs, name, time_units, verbose=False, duration=None):
     """Plot the time evolution of the number of nodes with degree of at least one of snap graph in graphs"""
     Y = []
     for g in graphs:
-        Y.append(g.GetNodes()-snap.CntInDegNodes(g, 0)-snap.CntOutDegNodes(g, 0))
+        Y.append(g.GetNodes()-snap.CntDegNodes(g, 0))
     X = range(len(Y))
     if duration is not None:
         X = range(duration[0], duration[1]+1)
