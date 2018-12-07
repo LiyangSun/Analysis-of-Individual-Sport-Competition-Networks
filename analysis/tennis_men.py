@@ -20,6 +20,7 @@ if __name__ == '__main__':
         mydict = pickle.load(dic_id)
         G = load.load_global("tennis_men")
         graphs = load.load_temporal("tennis_men", multi=False)
+        prop = {}
 
         # Time evolution
         #

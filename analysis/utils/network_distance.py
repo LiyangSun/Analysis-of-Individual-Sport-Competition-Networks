@@ -18,11 +18,14 @@ def step_function(x):
     return vstep(x)
 
 
-def cumul_distrib_function(x, eigenvector):
+def cumul_distrib_function(x, eigenvector, complex=True):
     """Cumulative distribution function with x any number and eigenvector a numpy array"""
     n = len(eigenvector)
     xvector = np.array([x]*n)
-    return sum(step_function(xvector-eigenvector))/n
+    if complex:
+        return sum(step_function(xvector-np.real(eigenvector))*step_function(xvector-np.imag(eigenvector)))/n
+    else:
+        return sum(step_function(xvector-eigenvector))/n
 
 
 def norm1_distrib(x, ev1, ev2):

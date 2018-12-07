@@ -2,6 +2,21 @@ import snap
 import pickle
 
 
+def txt_results(dic, name):
+    with open("summary_{}.txt".format(name), "w+") as txt_file:
+        txt_file.write("########## ")
+        txt_file.write("Summary of {} network".format(name))
+        txt_file.write(" ##########\n\n")
+        for key in dic.keys():
+            txt_file.write("{}: {}\n".format(key, dic[key]))
+
+
+def add_results(txt_path, dic):
+    with open(txt_path, "a+") as txt_file:
+        for key in dic.keys():
+            txt_file.write("{}: {}\n".format(key, dic[key]))
+
+
 def quick_properties(graph, name, dic_path):
     """Get quick properties of the graph "name". dic_path is the path of the dict {players: id} """
     n_edges = graph.GetEdges()
@@ -57,3 +72,7 @@ def quick_properties(graph, name, dic_path):
                                                                                  list(mydict.values()).index(
                                                                                      sorted_NIdAuthH[2])]))
 
+
+if __name__ == '__main__':
+    txt_results({"Bonjour": 474}, "test")
+    pass
