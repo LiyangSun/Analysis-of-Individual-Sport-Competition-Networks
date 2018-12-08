@@ -1,4 +1,5 @@
 import imp
+import collections
 import snap
 import pickle
 import utils.load as load
@@ -49,13 +50,24 @@ if __name__ == '__main__':
     i_pr_ys = [[sum(pr_y[:i+1]) for i in range(len(pr_y))] for pr_y in pr_ys]
     pr_xs = [[float(i+1)/len(pr_y) for i in range(len(pr_y))] for pr_y in pr_ys]
 
-
     plt.figure()
     [plt.plot(pr_xs[i], i_pr_ys[i], '.', markersize=4) for i in range(len(graphs))]
     plt.title("Cumulative PageRank vs. Node Fraction")
     plt.legend(names)
     plt.xlabel("Node Fraction")
     plt.ylabel("Cumulative PageRank")
+
+    #get node in-degree distribution
+    plt.figure()
+    for graph in graphs:
+        y = sorted([float(node.GetInDeg())/node.GetDeg() for node in graph.Nodes()])
+        #y = [float(val-min(y))/(max(y)-min(y)) for val in y]
+        x = [float(i+1)/graph.GetNodes() for i in range(len(y))]
+        plt.plot(x,y, '.', markersize=4)
+        plt.title("Node Distribution by Win Percentage")
+        plt.legend(names)
+        plt.xlabel("Node Fraction")
+        plt.ylabel("Win Percentage")
 
     Rnd = snap.TRnd(42)
     Rnd.Randomize()
