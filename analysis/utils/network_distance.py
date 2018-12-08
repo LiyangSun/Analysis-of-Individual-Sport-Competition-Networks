@@ -50,3 +50,4 @@ def network_distance(g1, g2, weights_path_1, weights_path_2, in_degree=True):
         dist += distribution_kruglov_distance(ev1[:, i], ev2[:, i])
     dist = dist / n
     return dist
+

@@ -62,6 +62,7 @@ def bowtie_components(graph, name):
     print 'OUT: {}'.format(out)
     print 'TENDRILS + TUBES: {}'.format(tt)
 
+    return results
 
 if __name__ == '__main__':
     pass

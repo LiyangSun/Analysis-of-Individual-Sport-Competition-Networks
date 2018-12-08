@@ -91,3 +91,10 @@ def charac_temporal_alt_clust_coef(graphs, directed=True):
         nodeID = node.GetId()
         c += temporal_alt_clust_coef(graphs, nodeID, directed)
     return c/graphs[0].GetNodes()
+
+
+def temporal_metrics(graphs, directed=True):
+    """Return all metrics from above"""
+    c, alt_c = charac_temporal_clust_coef(graphs, directed), charac_temporal_alt_clust_coef(graphs, directed)
+    results = {"a. Temporal clustering coefficient":c, "b. Temporal alternative clustering coefficient": alt_c}
+    return results

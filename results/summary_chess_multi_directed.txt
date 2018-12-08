@@ -15,3 +15,31 @@ l. Nodes, edges of largest WCC: (6616, 36257)
 m. Three top PageRank: (7848, 64, 158)
 n. Three top hubs: (1594, 1286, 7848)
 o. Three top authorities: (7848, 1286, 1594)
+
+## Bowtie Analysis
+
+a. SCC: 4121
+b. IN: 1951
+c. OUT: 354
+d. TENDRILS + TUBES: 190
+e. DISCONNECTED: 216
+
+## Path metrics
+
+a. Diameter: 16
+b. Effective diameter: 6.79490746128
+c. Average shortest path length: 5.31179361142
+d. Path probability: 0.612
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.0233217304589
+b. Alternate clustering coefficient: 0.0282306985285
+c. Number of triads: 2778
+d. Closed triads: 2778
+e. Open triads: 1122299
+
+## Temporal metrics
+
+a. Temporal clustering coefficient: 0.00598878507233
+b. Temporal alternative clustering coefficient: 0.0253506321897
