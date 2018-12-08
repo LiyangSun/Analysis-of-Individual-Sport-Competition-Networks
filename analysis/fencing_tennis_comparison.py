@@ -1,31 +1,30 @@
 import imp
 import snap
 import pickle
-
+import utils.load as load
 import matplotlib.pyplot as plt
-fencing_preprocessing = imp.load_source('preprocessing', '../preprocessing/fencing.py')
 
 if __name__ == '__main__':
-    fencing_graph, _ = fencing_preprocessing.get_fencing_graph_and_name_map()
+
+    dic_path = "../datasets/fencing/fencing_ids.pkl"
+    with open(dic_path, 'rb') as dic_id:
+        mydict = pickle.load(dic_id)
+        fencing_graph = load.load_global("fencing")
+
     dic_path = "../datasets/tennis/men_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/tennis/ATP/men/edges.txt"
-        utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
-        tm_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+        tm_graph = load.load_global("tennis_men")
 
     dic_path = "../datasets/tennis/women_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/tennis/ATP/women/edges.txt"
-        utxt_path = "../datasets/tennis/ATP/women/uniq_edges.txt"
-        tf_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+        tf_graph = load.load_global("tennis_women")
 
     dic_path = "../datasets/chess/chess_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        txt_path = "../datasets/chess/edges.txt"
-        chess_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+        chess_graph = load.load_global("chess")
 
     graphs = [fencing_graph, tm_graph, tf_graph, chess_graph]
     names = ["Fencing Network", "Men's Tennis Network", "Women's Tennis Network", "Chess Network"]
@@ -43,7 +42,6 @@ if __name__ == '__main__':
         print names[i]
         for comp in comp_dist:
             print 'size:', comp.GetVal1(), 'count:', comp.GetVal2()
-
 
     p_ranks = [snap.TIntFltH() for graph in graphs]
     [snap.GetPageRank(graph, p_ranks[i]) for i, graph in enumerate(graphs)]
