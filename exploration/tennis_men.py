@@ -15,10 +15,10 @@ if __name__ == '__main__':
         txt_path = "../datasets/tennis/ATP/men/edges.txt"
         utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
         graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-        # graph_undirected = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+        graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
         # graph_directed = snap.LoadEdgeList(snap.PNGraph, utxt_path, 0, 1, ';')
 
-        ov.quick_properties(graph, "Tennis ATP Men", dic_path)
+        # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
         # ov.quick_properties(graph_directed, "Tennis ATP Men", dic_path)
 
         # features = sr.basic_features(graph, True)
@@ -27,9 +27,9 @@ if __name__ == '__main__':
         # sr.sim_node_max("Nadal R.", rec_features, dic_path)
         # sr.plot_sim_hist("Federer R.", rec_features, dic_path, bin_width=30)
 
-        # bsf.cumul_BFS(graph, "tennis")
+        # bsf.cumul_BFS(graph, "tennis men")
         # bsf.bowtie_components(graph, "tennis")
-        # bsf.path_proba(graph, "tennis")
+        # bsf.path_proba(graph, "tennis", 10000)
 
         # sim.JA_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
         # sim.CN_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
@@ -52,19 +52,20 @@ if __name__ == '__main__':
         # effective diameter (90-th percentile of the distribution of shortest path lengths)
         # full diameter (longest-shortest path)
         # avg shortest path length
-        # print snap.GetBfsEffDiamAll(graph, 100, True)
+        # print snap.GetBfsEffDiamAll(graph, 10000, True)
 
         # Uses the Clauset/Newman/Moore community detection method for large networks.
         # At every step of the algo two communities that contribute max positive value to global modularity are merged.
         # Fills CmtyV with all the communities detected and returns the modularity of the network.
-        # CmtyV = snap.TCnComV()
-        # print(snap.CommunityCNM(graph_undirected, CmtyV))
+        CmtyV = snap.TCnComV()
+        print(snap.CommunityCNM(graph_undirected, CmtyV))
+        print(CmtyV.Len())
 
         # Same but with Girvan/Newman method
         # CmtyV = snap.TCnComV()
         # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
 
-        # print snap.GetClustCf(graph)
+        print snap.GetClustCf(graph)
 
         # Get nb of triads, subgraphs formed by 3 nodes
         # print snap.GetTriads(graph)
