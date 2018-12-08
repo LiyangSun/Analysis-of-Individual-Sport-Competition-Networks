@@ -1,0 +1,17 @@
+########## Summary of tenniswomen_simple_directed network ##########
+
+a. Nodes: 963
+b. Edges: 20758
+c. Self-edges: 0
+d. Directed edges: 20758
+e. Undirected edges: 17527
+f. Reciprocated edges: 3231
+g. 0 out-degree nodes: 3
+h. 0 in-degree nodes: 327
+i. Maximum node out-degree: 311
+j. Maximum node in-degree: 319
+k. Weakly connected components: 1
+l. Nodes, edges of largest WCC: (963, 20758)
+m. Three top PageRank: ('Wozniacki C.', 'Jankovic J.', 'Radwanska A.')
+n. Three top hubs: ('Cornet A.', 'Goerges J.', 'Errani S.')
+o. Three top authorities: ('Wozniacki C.', 'Radwanska A.', 'Jankovic J.')

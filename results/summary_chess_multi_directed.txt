@@ -1,0 +1,17 @@
+########## Summary of chess_multi_directed network ##########
+
+a. Nodes: 6832
+b. Edges: 36387
+c. Self-edges: 0
+d. Directed edges: 34562
+e. Undirected edges: 33652
+f. Reciprocated edges: 1069
+g. 0 out-degree nodes: 529
+h. 0 in-degree nodes: 1668
+i. Maximum node out-degree: 152
+j. Maximum node in-degree: 155
+k. Weakly connected components: 94
+l. Nodes, edges of largest WCC: (6616, 36257)
+m. Three top PageRank: (7848, 64, 158)
+n. Three top hubs: (1594, 1286, 7848)
+o. Three top authorities: (7848, 1286, 1594)

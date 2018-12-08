@@ -100,4 +100,18 @@ def save_dict():
         pickle.dump(name_map, f, pickle.HIGHEST_PROTOCOL)
 
 if __name__ == '__main__':
-    save_dict()
+    # save_dict()
+    txt_path = "../datasets/fencing/edges.txt"
+    multi_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+    graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
+    graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+
+    multi_FOut = snap.TFOut("../graphs/fencing/2017_2018_multi_directed_unweighted.graph")
+    multi_graph.Save(multi_FOut)
+    multi_FOut.Flush()
+    undirected_FOut= snap.TFOut("../graphs/fencing/2017_2018_simple_undirected_unweighted.graph")
+    graph_undirected.Save(undirected_FOut)
+    undirected_FOut.Flush()
+    directed_FOut = snap.TFOut("../graphs/fencing/2017_2018_simple_directed_unweighted.graph")
+    graph_directed.Save(directed_FOut)
+    directed_FOut.Flush()
