@@ -103,11 +103,11 @@ def save_dict():
 if __name__ == '__main__':
     # save_dict()
 
-    currentPath = 'men/saber'
+    currentPath = 'men/foil'
 
     # Preprocessing
-    # save_edges_txt()
-    # save_dict()
+    save_edges_txt()
+    save_dict()
 
 
     #Graph saving
