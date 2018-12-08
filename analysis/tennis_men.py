@@ -22,6 +22,9 @@ if __name__ == '__main__':
         G_simple_directed = load.load_global("tennis_men", multi=False)
         G_simple_undirected = load.load_global("tennis_men", multi=False, directed=False)
         graphs = load.load_temporal("tennis_men", multi=False)
+        results_multi = "../results/summary_tennismen_multi_directed.txt"
+        results_directed = "../results/summary_tennismen_simple_directed.txt"
+        results_undirected = "../results/summary_tennismen_simple_undirected.txt"
 
         # Time evolution
         #
@@ -49,7 +52,22 @@ if __name__ == '__main__':
 
         # BFS, bowtie-assumptions
         #
-        bfs.cumul_BFS(G_simple_directed, "tennismen")
+        # bfs.cumul_BFS(G_simple_directed, "tennismen")
+        ov.add_text(results_multi, "\n## Bowtie Analysis")
+        ov.add_text(results_directed, "\n## Bowtie Analysis")
+        ov.add_text(results_undirected, "\n## Bowtie Analysis")
+        res = bfs.bowtie_components(G, "tennismen_multi")
+        res_dir = bfs.bowtie_components(G_simple_directed, "tennismen_simple_directed")
+        res_undir = bfs.bowtie_components(G_simple_undirected, "tennismen_simple_undirected")
+        ov.add_results(results_multi, res)
+        ov.add_results(results_directed, res_dir)
+        ov.add_results(results_undirected, res_undir)
+
+        # Other properties
+        #
+
+
+
 
         # Temporal metrics
         #
@@ -65,10 +83,6 @@ if __name__ == '__main__':
         # sr.sim_node_max("Nadal R.", features, dic_path)
         # sr.sim_node_max("Nadal R.", rec_features, dic_path)
         # sr.plot_sim_hist("Federer R.", rec_features, dic_path, bin_width=30)
-
-        # bsf.cumul_BFS(graph, "tennis men")
-        # bsf.bowtie_components(graph, "tennis")
-        # bsf.path_proba(graph, "tennis", 10000)
 
         # sim.JA_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
         # sim.CN_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)

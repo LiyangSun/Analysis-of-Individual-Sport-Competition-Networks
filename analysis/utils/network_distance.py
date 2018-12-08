@@ -35,7 +35,7 @@ def norm1_distrib(x, ev1, ev2):
 
 def distribution_kruglov_distance(ev1, ev2):
     """Returns the Kruglov distance of the cumulative distribution of ev1 and ev2, with absolute function"""
-    return integrate.quad(lambda x: norm1_distrib(x, ev1, ev2), -np.inf, np.inf)
+    return integrate.quad(lambda x: norm1_distrib(x, ev1, ev2), -np.inf, np.inf)[0]
 
 
 def network_distance(g1, g2, weights_path_1, weights_path_2, in_degree=True):

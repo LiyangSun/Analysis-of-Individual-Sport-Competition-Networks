@@ -21,6 +21,9 @@ if __name__ == '__main__':
         G_simple_directed = load.load_global("chess", multi=False)
         G_simple_undirected = load.load_global("chess", multi=False, directed=False)
         graphs = load.load_temporal("chess", multi=False)
+        results_multi = "../results/summary_chess_multi_directed.txt"
+        results_directed = "../results/summary_chess_simple_directed.txt"
+        results_undirected = "../results/summary_chess_simple_undirected.txt"
 
         # Time evolution
         #
@@ -47,15 +50,22 @@ if __name__ == '__main__':
 
         # BFS, bowtie-assumptions
         #
-        bfs.cumul_BFS(G_simple_directed, "chess")
+        # bfs.cumul_BFS(G_simple_directed, "chess")
+        ov.add_text(results_multi, "\n## Bowtie Analysis")
+        ov.add_text(results_directed, "\n## Bowtie Analysis")
+        ov.add_text(results_undirected, "\n## Bowtie Analysis")
+        res = bfs.bowtie_components(G, "chess_multi")
+        res_dir = bfs.bowtie_components(G_simple_directed, "chess_simple_directed")
+        res_undir = bfs.bowtie_components(G_simple_undirected, "chess_simple_undirected")
+        ov.add_results(results_multi, res)
+        ov.add_results(results_directed, res_dir)
+        ov.add_results(results_undirected, res_undir)
 
         # Temporal metrics
         #
         # print(tmetrics.charac_temporal_clust_coef(graphs))
         # print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
-
-        # ov.quick_properties(graph, "Chess", dic_path)
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)

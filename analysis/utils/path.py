@@ -20,4 +20,3 @@ def path_proba(graph, name, n=1000):
 
     print 'Using {} random pairs, the probability that a path exists between two nodes is ' \
           '{} for the {} network'.format(n, p / n, name)
-    

@@ -16,6 +16,9 @@ if __name__ == '__main__':
         G = load.load_global("fencing")
         G_simple_directed = load.load_global("fencing", multi=False)
         G_simple_undirected = load.load_global("fencing", multi=False, directed=False)
+        results_multi = "../results/summary_fencing_multi_directed.txt"
+        results_directed = "../results/summary_fencing_simple_directed.txt"
+        results_undirected = "../results/summary_fencing_simple_undirected.txt"
 
         # Visualization global
         #

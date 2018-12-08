@@ -15,7 +15,7 @@ def txt_results(dic, name):
 def add_results(txt_path, dic):
     """Add results for a network in the txt file txt_path"""
     with open(txt_path, "a+") as txt_file:
-        for key in dic.keys():
+        for key in sorted(dic.keys()):
             txt_file.write("{}: {}\n".format(key, dic[key]))
 
 

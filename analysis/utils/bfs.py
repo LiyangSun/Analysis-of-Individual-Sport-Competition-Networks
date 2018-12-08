@@ -34,6 +34,7 @@ def cumul_BFS(graph, name, N=1000):
 
 def bowtie_components(graph, name):
     """Give sizes of DISCONNECTED, IN, OUT, SCC"""
+    results = {}
 
     N = graph.GetNodes()
 
@@ -48,33 +49,18 @@ def bowtie_components(graph, name):
     out = SCC_out.GetNodes() - scc
     tt = N - disc - scc - in1 - out
 
+    results["a. SCC"] = scc
+    results["b. IN"] = in1
+    results["c. OUT"] = out
+    results["d. TENDRILS + TUBES"] = tt
+    results["e. DISCONNECTED"] = disc
+
     print 'Total nodes in {} network: {}'.format(name, N)
     print 'DISCONNECTED: {}'.format(disc)
     print 'SCC: {}'.format(scc)
     print 'IN: {}'.format(in1)
     print 'OUT: {}'.format(out)
     print 'TENDRILS + TUBES: {}'.format(tt)
-
-
-def path_proba(graph, name, n=1000):
-    """Calculate the probability that a path exists between two uniformly random nodes (n simulations)"""
-
-    p = 0
-
-    for i in range(n):
-        a = graph.GetRndNId()
-        b = graph.GetRndNId()
-
-        while a == b:
-            b = graph.GetRndNId()
-
-        NIdToDistH = snap.TIntH()
-        snap.GetShortPath(graph, a, NIdToDistH, True)
-        if b in NIdToDistH:
-            p += 1
-
-    print 'Using {} random pairs, the probability that a path exists between two nodes is ' \
-          '{} for the {} network'.format(n, p / n, name)
 
 
 if __name__ == '__main__':
