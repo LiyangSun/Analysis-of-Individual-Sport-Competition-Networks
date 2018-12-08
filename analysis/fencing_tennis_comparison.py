@@ -6,64 +6,72 @@ import matplotlib.pyplot as plt
 fencing_preprocessing = imp.load_source('preprocessing', '../preprocessing/fencing.py')
 
 if __name__ == '__main__':
-    fencing_graph, fencing_name_map = fencing_preprocessing.get_fencing_graph_and_name_map()
-    reverse_name_map = {}
-    for name in fencing_name_map:
-        reverse_name_map[fencing_name_map[name]]=name
+    fencing_graph, _ = fencing_preprocessing.get_fencing_graph_and_name_map()
     dic_path = "../datasets/tennis/men_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         txt_path = "../datasets/tennis/ATP/men/edges.txt"
         utxt_path = "../datasets/tennis/ATP/men/uniq_edges.txt"
-        tennis_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-    print 'nodes:', fencing_graph.GetNodes(), tennis_graph.GetNodes()
-    print 'edges:', fencing_graph.GetEdges(), tennis_graph.GetEdges()
-    print 'mxscc:', snap.GetMxScc(fencing_graph).GetNodes(), snap.GetMxScc(tennis_graph).GetNodes()
-    print 'max degree:', fencing_graph.GetNI(snap.GetMxDegNId(fencing_graph)).GetDeg(), tennis_graph.GetNI(snap.GetMxDegNId(tennis_graph)).GetDeg()
+        tm_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
 
-    f_comp_dist = snap.TIntPrV()
-    t_comp_dist = snap.TIntPrV()
-    snap.GetSccSzCnt(fencing_graph, f_comp_dist)
-    snap.GetSccSzCnt(tennis_graph, t_comp_dist)
-    print 'fencing'
-    for comp in f_comp_dist:
-        print 'size:', comp.GetVal1(), 'count:', comp.GetVal2()
-    print 'tennis'
-    for comp in t_comp_dist:
-        print 'size:', comp.GetVal1(), 'count:', comp.GetVal2()
+    dic_path = "../datasets/tennis/women_ids.pkl"
+    with open(dic_path, 'rb') as dic_id:
+        mydict = pickle.load(dic_id)
+        txt_path = "../datasets/tennis/ATP/women/edges.txt"
+        utxt_path = "../datasets/tennis/ATP/women/uniq_edges.txt"
+        tf_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
 
-    prank_f = snap.TIntFltH()
-    prank_t = snap.TIntFltH()
-    snap.GetPageRank(snap.GetMxScc(fencing_graph), prank_f)
-    snap.GetPageRank(snap.GetMxScc(tennis_graph), prank_t)
-    pr_y_f = sorted([prank_f[x] for x in prank_f])
-    pr_y_t = sorted([prank_t[x] for x in prank_t])
+    dic_path = "../datasets/chess/chess_ids.pkl"
+    with open(dic_path, 'rb') as dic_id:
+        mydict = pickle.load(dic_id)
+        txt_path = "../datasets/chess/edges.txt"
+        chess_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
 
-    #get some best player ids
-    bf_ids =  [x for x in prank_f if prank_f[x] in pr_y_f[-5:]]
-    bt_ids =  [x for x in prank_t if prank_t[x] in pr_y_t[-5:]]
+    graphs = [fencing_graph, tm_graph, tf_graph, chess_graph]
+    names = ["Fencing Network", "Men's Tennis Network", "Women's Tennis Network", "Chess Network"]
 
-    i_pr_y_f = [sum(pr_y_f[:i+1]) for i in range(len(pr_y_f))]
-    i_pr_y_t = [sum(pr_y_t[:i+1]) for i in range(len(pr_y_t))]
-    pr_x_f = [float(i+1)/len(pr_y_f) for i in range(len(pr_y_f))]
-    pr_x_t = [float(i+1)/len(pr_y_t) for i in range(len(pr_y_t))]
+    print 'names:', names
+    print 'nodes:', [graph.GetNodes() for graph in graphs]
+    print 'edges:', [graph.GetEdges() for graph in graphs]
+    print 'mxscc:', [snap.GetMxScc(graph).GetNodes() for graph in graphs]
+    print 'max degree:', [graph.GetNI(snap.GetMxDegNId(graph)).GetDeg() for graph in graphs]
+
+    comp_dists = [snap.TIntPrV() for graph in graphs]
+    scc_counts = [snap.GetSccSzCnt(graph, comp_dists[i]) for i, graph in enumerate(graphs)]
+    print 'Strongly Connected Components'
+    for i, comp_dist in enumerate(comp_dists):
+        print names[i]
+        for comp in comp_dist:
+            print 'size:', comp.GetVal1(), 'count:', comp.GetVal2()
+
+
+    p_ranks = [snap.TIntFltH() for graph in graphs]
+    [snap.GetPageRank(graph, p_ranks[i]) for i, graph in enumerate(graphs)]
+    pr_ys = [sorted([p_rank[x] for x in p_rank]) for p_rank in p_ranks]
+    i_pr_ys = [[sum(pr_y[:i+1]) for i in range(len(pr_y))] for pr_y in pr_ys]
+    pr_xs = [[float(i+1)/len(pr_y) for i in range(len(pr_y))] for pr_y in pr_ys]
+
 
     plt.figure()
-    plt.plot(pr_x_f, i_pr_y_f, 'r.')
-    plt.plot(pr_x_t, i_pr_y_t, 'b.')
+    [plt.plot(pr_xs[i], i_pr_ys[i], '.', markersize=4) for i in range(len(graphs))]
     plt.title("Cumulative PageRank vs. Node Fraction")
-    plt.legend(["Fencing Network", "Tennis Network"])
+    plt.legend(names)
     plt.xlabel("Node Fraction")
     plt.ylabel("Cumulative PageRank")
-    plt.show()
 
     Rnd = snap.TRnd(42)
     Rnd.Randomize()
 
-    while float(fencing_graph.GetEdges())/fencing_graph.GetNodes() < float(tennis_graph.GetEdges())/tennis_graph.GetNodes():
-        tennis_graph.DelEdge(tennis_graph.GetRndEId(Rnd))
+    min_edges_per_node = min([float(graph.GetEdges())/graph.GetNodes() for graph in graphs])
 
-    print 'nodes:', fencing_graph.GetNodes(), tennis_graph.GetNodes()
-    print 'edges:', fencing_graph.GetEdges(), tennis_graph.GetEdges()
-    print 'mxscc:', snap.GetMxScc(fencing_graph).GetNodes(), snap.GetMxScc(tennis_graph).GetNodes()
-    print 'max degree:', fencing_graph.GetNI(snap.GetMxDegNId(fencing_graph)).GetDeg(), tennis_graph.GetNI(snap.GetMxDegNId(tennis_graph)).GetDeg()
+    for graph in graphs:
+        while float(graph.GetEdges())/graph.GetNodes() > min_edges_per_node:
+            graph.DelEdge(graph.GetRndEId(Rnd))
+
+    print 'names:', names
+    print 'nodes:', [graph.GetNodes() for graph in graphs]
+    print 'edges:', [graph.GetEdges() for graph in graphs]
+    print 'mxscc:', [snap.GetMxSccSz(graph) for graph in graphs]
+    print 'max degree:', [graph.GetNI(snap.GetMxDegNId(graph)).GetDeg() for graph in graphs]
+
+    plt.show()
