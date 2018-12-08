@@ -9,9 +9,6 @@ import sys
 import csv
 import snap
 
-
-#test
-
 def getOrderedNameList(path):
     """Get the players by ranking order from csv file path"""
     results = []
@@ -80,9 +77,9 @@ def get_fencing_graph_and_name_map():
     name_map = {}
     for month, year in [('oct', '2017'), ('april', '2018'), ('dec', '2017'), ('jan', '2018'), ('jul', '2018')]:
         seeding = getOrderedNameList(
-            '../datasets/fencing/' + currentPath + '/csv/' + month + '_nac_' + year + '_seeding_we.csv')  # ["a", "b", "c", "d", "e"]
+            '../datasets/fencing/' + currentPath + '/csv/' + month + '_nac_' + year + '_seeding.csv')  # ["a", "b", "c", "d", "e"]
         results = getOrderedNameList(
-            '../datasets/fencing/' + currentPath + '/csv/' + month + '_nac_' + year + '_results_we.csv')  # ["d", "c", "a", "b", "e"]
+            '../datasets/fencing/' + currentPath + '/csv/' + month + '_nac_' + year + '_results.csv')  # ["d", "c", "a", "b", "e"]
         createCompetitionGraph(seeding, results, G, name_map)
     return G, name_map
 
@@ -106,25 +103,25 @@ def save_dict():
 if __name__ == '__main__':
     # save_dict()
 
-    currentPath = 'women/epee'
+    currentPath = 'men/saber'
 
     # Preprocessing
-    save_edges_txt()
-    save_dict()
+    # save_edges_txt()
+    # save_dict()
 
 
     #Graph saving
-    # txt_path = "../datasets/fencing/" + currentPath + "/edges.txt"
-    # multi_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
-    # graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
-    # graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
-    #
-    # multi_FOut = snap.TFOut("../graphs/fencing/" + currentPath + "/2017_2018_multi_directed_unweighted.graph")
-    # multi_graph.Save(multi_FOut)
-    # multi_FOut.Flush()
-    # undirected_FOut= snap.TFOut("../graphs/fencing/" + currentPath + "/2017_2018_simple_undirected_unweighted.graph")
-    # graph_undirected.Save(undirected_FOut)
-    # undirected_FOut.Flush()
-    # directed_FOut = snap.TFOut("../graphs/fencing/" + currentPath + "/2017_2018_simple_directed_unweighted.graph")
-    # graph_directed.Save(directed_FOut)
-    # directed_FOut.Flush()
+    txt_path = "../datasets/fencing/" + currentPath + "/edges.txt"
+    multi_graph = snap.LoadEdgeList(snap.PNEANet, txt_path, 0, 1, ';')
+    graph_undirected = snap.LoadEdgeList(snap.PUNGraph, txt_path, 0, 1, ';')
+    graph_directed = snap.LoadEdgeList(snap.PNGraph, txt_path, 0, 1, ';')
+
+    multi_FOut = snap.TFOut("../graphs/fencing/" + currentPath + "/2017_2018_multi_directed_unweighted.graph")
+    multi_graph.Save(multi_FOut)
+    multi_FOut.Flush()
+    undirected_FOut= snap.TFOut("../graphs/fencing/" + currentPath + "/2017_2018_simple_undirected_unweighted.graph")
+    graph_undirected.Save(undirected_FOut)
+    undirected_FOut.Flush()
+    directed_FOut = snap.TFOut("../graphs/fencing/" + currentPath + "/2017_2018_simple_directed_unweighted.graph")
+    graph_directed.Save(directed_FOut)
+    directed_FOut.Flush()
