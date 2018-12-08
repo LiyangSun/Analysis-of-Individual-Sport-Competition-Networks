@@ -4,7 +4,7 @@ from os import listdir
 from os.path import isfile
 import utils.overview as ov
 import utils.RoIX as sr
-import utils.bfs as bsf
+import utils.bfs as bfs
 import utils.similarity as sim
 import utils.motif_detection as md
 import utils.time_evolution as evol
@@ -18,6 +18,8 @@ if __name__ == '__main__':
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         G = load.load_global("tennis_women")
+        G_simple_directed = load.load_global("tennis_women", multi=False)
+        G_simple_undirected = load.load_global("tennis_women", multi=False, directed=False)
         graphs = load.load_temporal("tennis_women", multi=False)
 
         # Time evolution
@@ -34,13 +36,23 @@ if __name__ == '__main__':
         # nxgraph = visu.load_graph_networkx("../datasets/tennis/ATP/women/uniq_edges.txt")
         # visu.visualize_networkx(nxgraph, "tenniswomen")
 
+        # Basic properties
+        #
+        # prop = ov.quick_properties(G, "Tennis ATP Women Multi-directed", dic_path)
+        # ov.txt_results(prop, "tenniswomen_multi_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Tennis ATP Women Simple-directed", dic_path)
+        # ov.txt_results(prop, "tenniswomen_simple_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Tennis ATP Women Simple-undirected", dic_path)
+        # ov.txt_results(prop, "tenniswomen_simple_undirected")
+
+        # BFS, bowtie-assumptions
+        #
+        bfs.cumul_BFS(G_simple_directed, "tenniswomen")
+
         # Temporal metrics
         #
-        print(tmetrics.charac_temporal_clust_coef(graphs))
-        print(tmetrics.charac_temporal_alt_clust_coef(graphs))
-
-
-        # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
+        # print(tmetrics.charac_temporal_clust_coef(graphs))
+        # print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)

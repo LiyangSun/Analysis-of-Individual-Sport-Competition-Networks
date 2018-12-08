@@ -4,7 +4,7 @@ from os import listdir
 from os.path import isfile
 import utils.overview as ov
 import utils.RoIX as sr
-import utils.bfs as bsf
+import utils.bfs as bfs
 import utils.similarity as sim
 import utils.motif_detection as md
 import utils.load as ld
@@ -19,8 +19,9 @@ if __name__ == '__main__':
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         G = load.load_global("tennis_men")
+        G_simple_directed = load.load_global("tennis_men", multi=False)
+        G_simple_undirected = load.load_global("tennis_men", multi=False, directed=False)
         graphs = load.load_temporal("tennis_men", multi=False)
-        prop = {}
 
         # Time evolution
         #
@@ -37,19 +38,27 @@ if __name__ == '__main__':
         # visu.visualize_networkx(nxgraph, "tennismen")
         # visu.in_deg_distribution(graphs[0], "test")
 
+        # Basic properties
+        #
+        # prop = ov.quick_properties(G, "Tennis ATP Men Multi-directed", dic_path)
+        # ov.txt_results(prop, "tennismen_multi_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Tennis ATP Men Simple-directed", dic_path)
+        # ov.txt_results(prop, "tennismen_simple_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Tennis ATP Men Simple-undirected", dic_path)
+        # ov.txt_results(prop, "tennismen_simple_undirected")
+
+        # BFS, bowtie-assumptions
+        #
+        bfs.cumul_BFS(G_simple_directed, "tennismen")
+
         # Temporal metrics
         #
-        print(tmetrics.charac_temporal_clust_coef(graphs))
-        print(tmetrics.charac_temporal_alt_clust_coef(graphs))
-
+        # print(tmetrics.charac_temporal_clust_coef(graphs))
+        # print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
         # print(tmetrics.temporal_clust_coef(graphs_time, 1))
         # print(tmetrics.temporal_clust_coef(graphs_time, 1, False))
         # print(snap.GetNodeClustCf(graph, 1))
-
-
-        # ov.quick_properties(graph, "Tennis ATP Men", dic_path)
-        # ov.quick_properties(graph_directed, "Tennis ATP Men", dic_path)
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)

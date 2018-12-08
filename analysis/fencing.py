@@ -2,7 +2,7 @@ import snap
 import pickle
 import utils.overview as ov
 import utils.RoIX as sr
-import utils.bfs as bsf
+import utils.bfs as bfs
 import utils.similarity as sim
 import utils.motif_detection as md
 import utils.load as load
@@ -13,16 +13,30 @@ if __name__ == '__main__':
     dic_path = "../datasets/fencing/fencing_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
-        G = load.load_global("chess")
+        G = load.load_global("fencing")
+        G_simple_directed = load.load_global("fencing", multi=False)
+        G_simple_undirected = load.load_global("fencing", multi=False, directed=False)
 
         # Visualization global
         #
         # nxgraph = visu.load_graph_networkx("../datasets/fencing/edges.txt")
         # visu.visualize_networkx(nxgraph, "fencing")
 
+        # Basic properties
+        #
+        # prop = ov.quick_properties(G, "Fencing Multi-directed", dic_path)
+        # ov.txt_results(prop, "fencing_multi_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Fencing Simple-directed", dic_path)
+        # ov.txt_results(prop, "fencing_simple_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Fencing Simple-undirected", dic_path)
+        # ov.txt_results(prop, "fencing_simple_undirected")
+
+        # BFS, bowtie-assumptions
+        #
+        bfs.cumul_BFS(G_simple_directed, "fencing")
 
 
-        # ov.quick_properties(graph, "Fencing", dic_path)
+
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)
@@ -30,7 +44,6 @@ if __name__ == '__main__':
         # sr.sim_node_max(7848, rec_features, dic_path)
         # sr.plot_sim_hist(7848, rec_features, dic_path, bin_width=30)
 
-        # bsf.cumul_BFS(graph, "fencing")
         # bsf.bowtie_components(graph, "fencing")
         # bsf.path_proba(graph, "fencing", 100000)
 

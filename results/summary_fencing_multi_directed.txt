@@ -1,0 +1,17 @@
+########## Summary of fencing_multi_directed network ##########
+
+a. Nodes: 270
+b. Edges: 630
+c. Self-edges: 0
+d. Directed edges: 625
+e. Undirected edges: 623
+f. Reciprocated edges: 2
+g. 0 out-degree nodes: 0
+h. 0 in-degree nodes: 119
+i. Maximum node out-degree: 11
+j. Maximum node in-degree: 19
+k. Weakly connected components: 1
+l. Nodes, edges of largest WCC: (270, 630)
+m. Three top PageRank: ('kaull, james', 'ewart, stephen', 'hoyle, jacob')
+n. Three top hubs: ('thein-sandler, adrien', 'white, sean', 'moore, shomari')
+o. Three top authorities: ('kaull, james', 'ewart, stephen', 'fayez, ayman')

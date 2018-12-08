@@ -1,0 +1,17 @@
+########## Summary of tennismen_simple_undirected network ##########
+
+a. Nodes: 1485
+b. Edges: 34338
+c. Self-edges: 0
+d. Directed edges: 34338
+e. Undirected edges: 28329
+f. Reciprocated edges: 6009
+g. 0 out-degree nodes: 2
+h. 0 in-degree nodes: 537
+i. Maximum node out-degree: 427
+j. Maximum node in-degree: 394
+k. Weakly connected components: 3
+l. Nodes, edges of largest WCC: (1421, 34276)
+m. Three top PageRank: ('Federer R.', 'Verdasco F.', 'Ferrer D.')
+n. Three top hubs: ('Youzhny M.', 'Lopez F.', 'Robredo T.')
+o. Three top authorities: ('Federer R.', 'Nadal R.', 'Ferrer D.')

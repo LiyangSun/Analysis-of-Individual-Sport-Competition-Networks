@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def cumul_BFS(graph, name, N=100):
+def cumul_BFS(graph, name, N=1000):
     """Get n random nodes and find the number of nodes in their inward and outward BFS trees.
     Plot the cumulative number of nodes reached in the BFS runs"""
 
@@ -23,13 +23,13 @@ def cumul_BFS(graph, name, N=100):
     x = np.linspace(0.0, 1.0, N)
     plt.subplot(1, 2, 1)
     plt.plot(x, X_in)
-    plt.title('Reachability of {} network using inlinks'.format(name))
+    plt.title('{}, using inlinks'.format(name))
 
     plt.subplot(1, 2, 2)
     plt.plot(x, X_out)
-    plt.title('Reachability of {} network using outlinks'.format(name))
+    plt.title('{}, using outlinks'.format(name))
 
-    plt.show()
+    plt.savefig("reachability_{}".format(name), bbox_inches="tight")
 
 
 def bowtie_components(graph, name):

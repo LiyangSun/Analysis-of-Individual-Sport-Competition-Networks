@@ -5,7 +5,7 @@ from os.path import isfile
 import utils.time_evolution as evol
 import utils.overview as ov
 import utils.RoIX as sr
-import utils.bfs as bsf
+import utils.bfs as bfs
 import utils.similarity as sim
 import utils.motif_detection as md
 import utils.temporal_metrics as tmetrics
@@ -18,6 +18,8 @@ if __name__ == '__main__':
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         G = load.load_global("chess")
+        G_simple_directed = load.load_global("chess", multi=False)
+        G_simple_undirected = load.load_global("chess", multi=False, directed=False)
         graphs = load.load_temporal("chess", multi=False)
 
         # Time evolution
@@ -34,10 +36,23 @@ if __name__ == '__main__':
         # nxgraph = visu.load_graph_networkx("../datasets/chess/uniq_edges.txt")
         # visu.visualize_networkx(nxgraph, "chess")
 
+        # Basic properties
+        #
+        # prop = ov.quick_properties(G, "Chess Multi-directed", dic_path)
+        # ov.txt_results(prop, "chess_multi_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Chess Simple-directed", dic_path)
+        # ov.txt_results(prop, "chess_simple_directed")
+        # prop = ov.quick_properties(G_simple_directed, "Chess Simple-undirected", dic_path)
+        # ov.txt_results(prop, "chess_simple_undirected")
+
+        # BFS, bowtie-assumptions
+        #
+        bfs.cumul_BFS(G_simple_directed, "chess")
+
         # Temporal metrics
         #
-        print(tmetrics.charac_temporal_clust_coef(graphs))
-        print(tmetrics.charac_temporal_alt_clust_coef(graphs))
+        # print(tmetrics.charac_temporal_clust_coef(graphs))
+        # print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
 
         # ov.quick_properties(graph, "Chess", dic_path)

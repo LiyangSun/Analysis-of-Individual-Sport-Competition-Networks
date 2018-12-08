@@ -1,0 +1,17 @@
+########## Summary of chess_simple_undirected network ##########
+
+a. Nodes: 6832
+b. Edges: 34562
+c. Self-edges: 0
+d. Directed edges: 34562
+e. Undirected edges: 33652
+f. Reciprocated edges: 910
+g. 0 out-degree nodes: 529
+h. 0 in-degree nodes: 1668
+i. Maximum node out-degree: 84
+j. Maximum node in-degree: 130
+k. Weakly connected components: 94
+l. Nodes, edges of largest WCC: (6616, 34433)
+m. Three top PageRank: (7848, 64, 1594)
+n. Three top hubs: (1594, 1512, 4037)
+o. Three top authorities: (1286, 1594, 1397)
