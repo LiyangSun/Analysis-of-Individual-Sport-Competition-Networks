@@ -12,6 +12,8 @@ import utils.time_evolution as evol
 import utils.temporal_metrics as tmetrics
 import utils.load as load
 import utils.visualization as visu
+import utils.path as path
+import utils.clustering as clust
 
 
 if __name__ == '__main__':
@@ -22,6 +24,8 @@ if __name__ == '__main__':
         G_simple_directed = load.load_global("tennis_men", multi=False)
         G_simple_undirected = load.load_global("tennis_men", multi=False, directed=False)
         graphs = load.load_temporal("tennis_men", multi=False)
+        graphs_multi = load.load_temporal("tennis_men")
+        graphs_undirected = load.load_temporal("tennis_men", multi=False, directed=False)
         results_multi = "../results/summary_tennismen_multi_directed.txt"
         results_directed = "../results/summary_tennismen_simple_directed.txt"
         results_undirected = "../results/summary_tennismen_simple_undirected.txt"
@@ -53,30 +57,56 @@ if __name__ == '__main__':
         # BFS, bowtie-assumptions
         #
         # bfs.cumul_BFS(G_simple_directed, "tennismen")
-        ov.add_text(results_multi, "\n## Bowtie Analysis")
-        ov.add_text(results_directed, "\n## Bowtie Analysis")
-        ov.add_text(results_undirected, "\n## Bowtie Analysis")
-        res = bfs.bowtie_components(G, "tennismen_multi")
-        res_dir = bfs.bowtie_components(G_simple_directed, "tennismen_simple_directed")
-        res_undir = bfs.bowtie_components(G_simple_undirected, "tennismen_simple_undirected")
+        # ov.add_text(results_multi, "\n## Bowtie Analysis\n\n")
+        # ov.add_text(results_directed, "\n## Bowtie Analysis\n\n")
+        # ov.add_text(results_undirected, "\n## Bowtie Analysis\n\n")
+        # res = bfs.bowtie_components(G, "tennismen_multi")
+        # res_dir = bfs.bowtie_components(G_simple_directed, "tennismen_simple_directed")
+        # res_undir = bfs.bowtie_components(G_simple_undirected, "tennismen_simple_undirected")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+
+        # Path metrics
+        #
+        # res = path.diameter_metrics(G, "tennismen_multi")
+        # res_dir = path.diameter_metrics(G_simple_directed, "tennismen_simple_directed")
+        # res_undir = path.diameter_metrics(G_simple_undirected, "tennismen_simple_undirected")
+        # ov.add_text(results_multi, "\n## Path metrics\n\n")
+        # ov.add_text(results_directed, "\n## Path metrics\n\n")
+        # ov.add_text(results_undirected, "\n## Path metrics\n\n")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+
+        # Cluster metrics
+        #
+        # res = clust.cluster_metrics(G)
+        # res_dir = clust.cluster_metrics(G_simple_directed)
+        # res_undir = clust.cluster_metrics(G_simple_undirected)
+        # ov.add_text(results_multi, "\n## Cluster metrics\n\n")
+        # ov.add_text(results_directed, "\n## Cluster metrics\n\n")
+        # ov.add_text(results_undirected, "\n## Cluster metrics\n\n")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+
+        # Temporal metrics
+        #
+        res_dir = tmetrics.temporal_metrics(graphs)
+        res = tmetrics.temporal_metrics(graphs_multi)
+        res_undir = tmetrics.temporal_metrics(graphs_undirected, directed=False)
+        ov.add_text(results_multi, "\n## Temporal metrics\n\n")
+        ov.add_text(results_directed, "\n## Temporal metrics\n\n")
+        ov.add_text(results_undirected, "\n## Temporal metrics\n\n")
         ov.add_results(results_multi, res)
         ov.add_results(results_directed, res_dir)
         ov.add_results(results_undirected, res_undir)
 
-        # Other properties
-        #
 
 
-
-
-        # Temporal metrics
-        #
         # print(tmetrics.charac_temporal_clust_coef(graphs))
         # print(tmetrics.charac_temporal_alt_clust_coef(graphs))
-
-        # print(tmetrics.temporal_clust_coef(graphs_time, 1))
-        # print(tmetrics.temporal_clust_coef(graphs_time, 1, False))
-        # print(snap.GetNodeClustCf(graph, 1))
 
         # features = sr.basic_features(graph, True)
         # rec_features = sr.recursive_features(graph, K=2, directed=True)
@@ -101,12 +131,6 @@ if __name__ == '__main__':
         # Basic info on graph
         # snap.PrintInfo(graph, "Tennis ATP Men", "infotennis", False)
 
-        # Get approximate of ... using BFS on 100 rdm starting nodes:
-        # effective diameter (90-th percentile of the distribution of shortest path lengths)
-        # full diameter (longest-shortest path)
-        # avg shortest path length
-        # print snap.GetBfsEffDiamAll(graph, 10000, True)
-
         # Uses the Clauset/Newman/Moore community detection method for large networks.
         # At every step of the algo two communities that contribute max positive value to global modularity are merged.
         # Fills CmtyV with all the communities detected and returns the modularity of the network.
@@ -119,16 +143,3 @@ if __name__ == '__main__':
         # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
 
         # print snap.GetClustCf(graph)
-
-        # Get nb of triads, subgraphs formed by 3 nodes
-        # print snap.GetTriads(graph)
-
-        # Get nb of closed triads and open triads, graph considered as undirected
-        # print snap.GetTriadsAll(graph)
-
-        # Computes SngVals largest singular values of the adjacency matrix representing the directed graph Graph
-        # SngVals = 4
-        # SngValV = snap.TFltV()
-        # snap.GetSngVals(graph_directed, SngVals, SngValV)
-        # for item in SngValV:
-        #     print item

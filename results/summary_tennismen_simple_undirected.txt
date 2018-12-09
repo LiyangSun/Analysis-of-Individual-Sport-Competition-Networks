@@ -15,3 +15,31 @@ l. Nodes, edges of largest WCC: (1421, 34276)
 m. Three top PageRank: ('Federer R.', 'Verdasco F.', 'Ferrer D.')
 n. Three top hubs: ('Youzhny M.', 'Lopez F.', 'Robredo T.')
 o. Three top authorities: ('Federer R.', 'Nadal R.', 'Ferrer D.')
+
+## Bowtie Analysis
+
+a. SCC: 1421
+b. IN: 0
+c. OUT: 0
+d. TENDRILS + TUBES: 0
+e. DISCONNECTED: 64
+
+## Path metrics
+
+a. Diameter: 9
+b. Effective diameter: 3.13939666993
+c. Average shortest path length: 2.73512814328
+d. Path probability: 0.91
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.356944062912
+b. Alternate clustering coefficient: 0.466603814634
+c. Number of triads: 539194
+d. Closed triads: 539194
+e. Open triads: 2367882
+
+## Temporal metrics
+
+a. Temporal clustering coefficient: 0.0409117415527
+b. Temporal alternative clustering coefficient: 0.246698640241

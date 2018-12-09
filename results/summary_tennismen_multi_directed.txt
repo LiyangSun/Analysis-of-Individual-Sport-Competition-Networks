@@ -15,3 +15,31 @@ l. Nodes, edges of largest WCC: (1421, 52221)
 m. Three top PageRank: ('Federer R.', 'Nadal R.', 'Djokovic N.')
 n. Three top hubs: ('Ferrer D.', 'Berdych T.', 'Verdasco F.')
 o. Three top authorities: ('Federer R.', 'Nadal R.', 'Djokovic N.')
+
+## Bowtie Analysis
+
+a. SCC: 897
+b. IN: 524
+c. OUT: 0
+d. TENDRILS + TUBES: 0
+e. DISCONNECTED: 64
+
+## Path metrics
+
+a. Diameter: 7
+b. Effective diameter: 3.52368761956
+c. Average shortest path length: 2.86290120623
+d. Path probability: 0.535
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.00498220827117
+b. Alternate clustering coefficient: 0.00650710578952
+c. Number of triads: 12275
+d. Closed triads: 12275
+e. Open triads: 20339224
+
+## Temporal metrics
+
+a. Temporal clustering coefficient: 0.0253579146852
+b. Temporal alternative clustering coefficient: 0.152865425315

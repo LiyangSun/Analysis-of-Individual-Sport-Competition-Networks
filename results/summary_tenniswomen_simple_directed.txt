@@ -15,3 +15,31 @@ l. Nodes, edges of largest WCC: (963, 20758)
 m. Three top PageRank: ('Wozniacki C.', 'Jankovic J.', 'Radwanska A.')
 n. Three top hubs: ('Cornet A.', 'Goerges J.', 'Errani S.')
 o. Three top authorities: ('Wozniacki C.', 'Radwanska A.', 'Jankovic J.')
+
+## Bowtie Analysis
+
+a. SCC: 612
+b. IN: 339
+c. OUT: 3
+d. TENDRILS + TUBES: 9
+e. DISCONNECTED: 0
+
+## Path metrics
+
+a. Diameter: 7
+b. Effective diameter: 3.45660601669
+c. Average shortest path length: 2.78147666557
+d. Path probability: 0.66
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.32853544469
+b. Alternate clustering coefficient: 0.421277807239
+c. Number of triads: 278023
+d. Closed triads: 278023
+e. Open triads: 1204400
+
+## Temporal metrics
+
+a. Temporal clustering coefficient: 0.0282850445442
+b. Temporal alternative clustering coefficient: 0.114364501695

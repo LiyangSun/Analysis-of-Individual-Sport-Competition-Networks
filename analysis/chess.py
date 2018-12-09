@@ -11,6 +11,8 @@ import utils.motif_detection as md
 import utils.temporal_metrics as tmetrics
 import utils.load as load
 import utils.visualization as visu
+import utils.path as path
+import utils.clustering as clust
 
 
 if __name__ == '__main__':
@@ -21,6 +23,8 @@ if __name__ == '__main__':
         G_simple_directed = load.load_global("chess", multi=False)
         G_simple_undirected = load.load_global("chess", multi=False, directed=False)
         graphs = load.load_temporal("chess", multi=False)
+        graphs_multi = load.load_temporal("chess")
+        graphs_undirected = load.load_temporal("chess", multi=False, directed=False)
         results_multi = "../results/summary_chess_multi_directed.txt"
         results_directed = "../results/summary_chess_simple_directed.txt"
         results_undirected = "../results/summary_chess_simple_undirected.txt"
@@ -51,20 +55,52 @@ if __name__ == '__main__':
         # BFS, bowtie-assumptions
         #
         # bfs.cumul_BFS(G_simple_directed, "chess")
-        ov.add_text(results_multi, "\n## Bowtie Analysis")
-        ov.add_text(results_directed, "\n## Bowtie Analysis")
-        ov.add_text(results_undirected, "\n## Bowtie Analysis")
-        res = bfs.bowtie_components(G, "chess_multi")
-        res_dir = bfs.bowtie_components(G_simple_directed, "chess_simple_directed")
-        res_undir = bfs.bowtie_components(G_simple_undirected, "chess_simple_undirected")
+        # ov.add_text(results_multi, "\n## Bowtie Analysis\n\n")
+        # ov.add_text(results_directed, "\n## Bowtie Analysis\n\n")
+        # ov.add_text(results_undirected, "\n## Bowtie Analysis\n\n")
+        # res = bfs.bowtie_components(G, "chess_multi")
+        # res_dir = bfs.bowtie_components(G_simple_directed, "chess_simple_directed")
+        # res_undir = bfs.bowtie_components(G_simple_undirected, "chess_simple_undirected")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+
+        # Path metrics
+        #
+        # res = path.diameter_metrics(G, "chess_multi")
+        # res_dir = path.diameter_metrics(G_simple_directed, "chess_simple_directed")
+        # res_undir = path.diameter_metrics(G_simple_undirected, "chess_simple_undirected")
+        # ov.add_text(results_multi, "\n## Path metrics\n\n")
+        # ov.add_text(results_directed, "\n## Path metrics\n\n")
+        # ov.add_text(results_undirected, "\n## Path metrics\n\n")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+
+        # Cluster metrics
+        #
+        # res = clust.cluster_metrics(G)
+        # res_dir = clust.cluster_metrics(G_simple_directed)
+        # res_undir = clust.cluster_metrics(G_simple_undirected)
+        # ov.add_text(results_multi, "\n## Cluster metrics\n\n")
+        # ov.add_text(results_directed, "\n## Cluster metrics\n\n")
+        # ov.add_text(results_undirected, "\n## Cluster metrics\n\n")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+
+        # Temporal metrics
+        #
+        res_dir = tmetrics.temporal_metrics(graphs)
+        res = tmetrics.temporal_metrics(graphs_multi)
+        res_undir = tmetrics.temporal_metrics(graphs_undirected, directed=False)
+        ov.add_text(results_multi, "\n## Temporal metrics\n\n")
+        ov.add_text(results_directed, "\n## Temporal metrics\n\n")
+        ov.add_text(results_undirected, "\n## Temporal metrics\n\n")
         ov.add_results(results_multi, res)
         ov.add_results(results_directed, res_dir)
         ov.add_results(results_undirected, res_undir)
 
-        # Temporal metrics
-        #
-        # print(tmetrics.charac_temporal_clust_coef(graphs))
-        # print(tmetrics.charac_temporal_alt_clust_coef(graphs))
 
 
         # features = sr.basic_features(graph, True)
