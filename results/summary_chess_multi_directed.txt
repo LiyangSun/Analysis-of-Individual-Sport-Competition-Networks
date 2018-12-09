@@ -43,3 +43,11 @@ e. Open triads: 1122299
 
 a. Temporal clustering coefficient: 0.00598878507233
 b. Temporal alternative clustering coefficient: 0.0253506321897
+
+## Bowtie Analysis
+
+a. SCC: 4121
+b. IN: 1951
+c. OUT: 354
+d. TENDRILS + TUBES: 190
+e. DISCONNECTED: 216

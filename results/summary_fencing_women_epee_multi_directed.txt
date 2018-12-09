@@ -1,0 +1,40 @@
+########## Summary of fencing_women_epee_multi_directed network ##########
+
+a. Nodes: 233
+b. Edges: 562
+c. Self-edges: 0
+d. Directed edges: 554
+e. Undirected edges: 547
+f. Reciprocated edges: 7
+g. 0 out-degree nodes: 1
+h. 0 in-degree nodes: 98
+i. Maximum node out-degree: 7
+j. Maximum node in-degree: 24
+k. Weakly connected components: 1
+l. Nodes, edges of largest WCC: (233, 562)
+m. Three top PageRank: ('hurley, courtney', 'hurley, kelley', 'nixon, catherine (kasia)')
+n. Three top hubs: ('vie, natalie', 'candreva, greta', 'dolgonos, melanie')
+o. Three top authorities: ('nixon, catherine (kasia)', 'vie, natalie', 'hurley, courtney')
+
+## Bowtie Analysis
+
+a. SCC: 91
+b. IN: 134
+c. OUT: 5
+d. TENDRILS + TUBES: 3
+e. DISCONNECTED: 0
+
+## Path metrics
+
+a. Diameter: 14
+b. Effective diameter: 7.26891666667
+c. Average shortest path length: 4.88975404205
+d. Path probability: 0.396
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.00765115514872
+b. Alternate clustering coefficient: 0.0108043584827
+c. Number of triads: 10
+d. Closed triads: 10
+e. Open triads: 4552

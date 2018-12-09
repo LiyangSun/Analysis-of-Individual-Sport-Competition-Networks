@@ -1,4 +1,4 @@
-########## Summary of fencing_simple_directed network ##########
+########## Summary of fencing_men_epee_simple_directed network ##########
 
 a. Nodes: 270
 b. Edges: 625
@@ -15,3 +15,26 @@ l. Nodes, edges of largest WCC: (270, 625)
 m. Three top PageRank: ('kaull, james', 'ewart, stephen', 'hoyle, jacob')
 n. Three top hubs: ('thein-sandler, adrien', 'white, sean', 'moore, shomari')
 o. Three top authorities: ('kaull, james', 'fayez, ayman', 'yoo, justin')
+
+## Bowtie Analysis
+
+a. SCC: 103
+b. IN: 167
+c. OUT: 0
+d. TENDRILS + TUBES: 0
+e. DISCONNECTED: 0
+
+## Path metrics
+
+a. Diameter: 10
+b. Effective diameter: 5.97414095811
+c. Average shortest path length: 4.39952314864
+d. Path probability: 0.389
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.0221504943985
+b. Alternate clustering coefficient: 0.0343714568253
+c. Number of triads: 87
+d. Closed triads: 87
+e. Open triads: 4626

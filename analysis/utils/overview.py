@@ -4,7 +4,7 @@ import pickle
 
 def txt_results(dic, name):
     """Write results for a network in a txt file"""
-    with open("summary_{}.txt".format(name), "w+") as txt_file:
+    with open("../results/summary_{}.txt".format(name), "w+") as txt_file:
         txt_file.write("########## ")
         txt_file.write("Summary of {} network".format(name))
         txt_file.write(" ##########\n\n")

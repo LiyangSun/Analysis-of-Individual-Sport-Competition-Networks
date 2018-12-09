@@ -1,0 +1,40 @@
+########## Summary of fencing_men_saber_simple_directed network ##########
+
+a. Nodes: 226
+b. Edges: 523
+c. Self-edges: 0
+d. Directed edges: 523
+e. Undirected edges: 519
+f. Reciprocated edges: 4
+g. 0 out-degree nodes: 1
+h. 0 in-degree nodes: 83
+i. Maximum node out-degree: 7
+j. Maximum node in-degree: 19
+k. Weakly connected components: 1
+l. Nodes, edges of largest WCC: (226, 523)
+m. Three top PageRank: ('homer, daryl', 'mackiewicz, andrew', 'spear, jeff')
+n. Three top hubs: ('thompson, khalil', 'natanzon, benjamin', 'walker, christopher')
+o. Three top authorities: ('homer, daryl', 'williams, grant', 'mackiewicz, andrew')
+
+## Bowtie Analysis
+
+a. SCC: 76
+b. IN: 143
+c. OUT: 2
+d. TENDRILS + TUBES: 5
+e. DISCONNECTED: 0
+
+## Path metrics
+
+a. Diameter: 21
+b. Effective diameter: 11.4581896552
+c. Average shortest path length: 6.00544287842
+d. Path probability: 0.349
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.039943818598
+b. Alternate clustering coefficient: 0.0537339464473
+c. Number of triads: 67
+d. Closed triads: 67
+e. Open triads: 3572

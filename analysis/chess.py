@@ -45,49 +45,49 @@ if __name__ == '__main__':
 
         # Basic properties
         #
-        # prop = ov.quick_properties(G, "Chess Multi-directed", dic_path)
-        # ov.txt_results(prop, "chess_multi_directed")
-        # prop = ov.quick_properties(G_simple_directed, "Chess Simple-directed", dic_path)
-        # ov.txt_results(prop, "chess_simple_directed")
-        # prop = ov.quick_properties(G_simple_directed, "Chess Simple-undirected", dic_path)
-        # ov.txt_results(prop, "chess_simple_undirected")
+        prop = ov.quick_properties(G, "Chess Multi-directed", dic_path)
+        ov.txt_results(prop, "chess_multi_directed")
+        prop = ov.quick_properties(G_simple_directed, "Chess Simple-directed", dic_path)
+        ov.txt_results(prop, "chess_simple_directed")
+        prop = ov.quick_properties(G_simple_directed, "Chess Simple-undirected", dic_path)
+        ov.txt_results(prop, "chess_simple_undirected")
 
         # BFS, bowtie-assumptions
         #
-        # bfs.cumul_BFS(G_simple_directed, "chess")
-        # ov.add_text(results_multi, "\n## Bowtie Analysis\n\n")
-        # ov.add_text(results_directed, "\n## Bowtie Analysis\n\n")
-        # ov.add_text(results_undirected, "\n## Bowtie Analysis\n\n")
-        # res = bfs.bowtie_components(G, "chess_multi")
-        # res_dir = bfs.bowtie_components(G_simple_directed, "chess_simple_directed")
-        # res_undir = bfs.bowtie_components(G_simple_undirected, "chess_simple_undirected")
-        # ov.add_results(results_multi, res)
-        # ov.add_results(results_directed, res_dir)
-        # ov.add_results(results_undirected, res_undir)
+        bfs.cumul_BFS(G_simple_directed, "chess")
+        ov.add_text(results_multi, "\n## Bowtie Analysis\n\n")
+        ov.add_text(results_directed, "\n## Bowtie Analysis\n\n")
+        ov.add_text(results_undirected, "\n## Bowtie Analysis\n\n")
+        res = bfs.bowtie_components(G, "chess_multi")
+        res_dir = bfs.bowtie_components(G_simple_directed, "chess_simple_directed")
+        res_undir = bfs.bowtie_components(G_simple_undirected, "chess_simple_undirected")
+        ov.add_results(results_multi, res)
+        ov.add_results(results_directed, res_dir)
+        ov.add_results(results_undirected, res_undir)
 
         # Path metrics
         #
-        # res = path.diameter_metrics(G, "chess_multi")
-        # res_dir = path.diameter_metrics(G_simple_directed, "chess_simple_directed")
-        # res_undir = path.diameter_metrics(G_simple_undirected, "chess_simple_undirected")
-        # ov.add_text(results_multi, "\n## Path metrics\n\n")
-        # ov.add_text(results_directed, "\n## Path metrics\n\n")
-        # ov.add_text(results_undirected, "\n## Path metrics\n\n")
-        # ov.add_results(results_multi, res)
-        # ov.add_results(results_directed, res_dir)
-        # ov.add_results(results_undirected, res_undir)
+        res = path.diameter_metrics(G, "chess_multi")
+        res_dir = path.diameter_metrics(G_simple_directed, "chess_simple_directed")
+        res_undir = path.diameter_metrics(G_simple_undirected, "chess_simple_undirected")
+        ov.add_text(results_multi, "\n## Path metrics\n\n")
+        ov.add_text(results_directed, "\n## Path metrics\n\n")
+        ov.add_text(results_undirected, "\n## Path metrics\n\n")
+        ov.add_results(results_multi, res)
+        ov.add_results(results_directed, res_dir)
+        ov.add_results(results_undirected, res_undir)
 
         # Cluster metrics
         #
-        # res = clust.cluster_metrics(G)
-        # res_dir = clust.cluster_metrics(G_simple_directed)
-        # res_undir = clust.cluster_metrics(G_simple_undirected)
-        # ov.add_text(results_multi, "\n## Cluster metrics\n\n")
-        # ov.add_text(results_directed, "\n## Cluster metrics\n\n")
-        # ov.add_text(results_undirected, "\n## Cluster metrics\n\n")
-        # ov.add_results(results_multi, res)
-        # ov.add_results(results_directed, res_dir)
-        # ov.add_results(results_undirected, res_undir)
+        res = clust.cluster_metrics(G)
+        res_dir = clust.cluster_metrics(G_simple_directed)
+        res_undir = clust.cluster_metrics(G_simple_undirected)
+        ov.add_text(results_multi, "\n## Cluster metrics\n\n")
+        ov.add_text(results_directed, "\n## Cluster metrics\n\n")
+        ov.add_text(results_undirected, "\n## Cluster metrics\n\n")
+        ov.add_results(results_multi, res)
+        ov.add_results(results_directed, res_dir)
+        ov.add_results(results_undirected, res_undir)
 
         # Temporal metrics
         #

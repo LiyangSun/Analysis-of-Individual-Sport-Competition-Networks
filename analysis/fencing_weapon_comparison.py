@@ -7,39 +7,86 @@ import utils.similarity as sim
 import utils.motif_detection as md
 import utils.load as load
 import utils.visualization as visu
+import utils.path as path
+import utils.clustering as clust
 
 
-currentPath = 'women/epee'
+currentPath = 'men/saber'
 
 if __name__ == '__main__':
     dic_path = "../datasets/fencing/" + currentPath + "/fencing_ids.pkl"
     with open(dic_path, 'rb') as dic_id:
         mydict = pickle.load(dic_id)
         global_load_string = "fencing_" + currentPath
+        file_save_string = "fencing_" + currentPath.replace('/', '_')
+
         G = load.load_global(global_load_string)
         G_simple_directed = load.load_global(global_load_string, multi=False)
         G_simple_undirected = load.load_global(global_load_string, multi=False, directed=False)
-        results_multi = "../results/summary_fencing_multi_directed.txt"
-        results_directed = "../results/summary_fencing_simple_directed.txt"
-        results_undirected = "../results/summary_fencing_simple_undirected.txt"
+        results_multi = "../results/summary_" + file_save_string + "_multi_directed.txt"
+        results_directed = "../results/summary_" + file_save_string + "_simple_directed.txt"
+        results_undirected = "../results/summary_" + file_save_string + "_simple_undirected.txt"
 
         # Visualization global
         #
         # nxgraph = visu.load_graph_networkx("../datasets/fencing/" + currentPath + "/edges.txt")
-        # visu.visualize_networkx(nxgraph, "fencing")
+        # visu.visualize_networkx(nxgraph, file_save_string)
+
+        # In & Out Degree Analysis
+        # visu.in_deg_distribution(G, file_save_string)
+        # visu.out_deg_distribution(G, file_save_string)
+
 
         # Basic properties
         #
         # prop = ov.quick_properties(G, "Fencing Multi-directed", dic_path)
-        # ov.txt_results(prop, "fencing_multi_directed")
+        # ov.txt_results(prop, file_save_string + "_multi_directed")
         # prop = ov.quick_properties(G_simple_directed, "Fencing Simple-directed", dic_path)
-        # ov.txt_results(prop, "fencing_simple_directed")
+        # ov.txt_results(prop, file_save_string + "_simple_directed")
         # prop = ov.quick_properties(G_simple_directed, "Fencing Simple-undirected", dic_path)
-        # ov.txt_results(prop, "fencing_simple_undirected")
+        # ov.txt_results(prop, file_save_string + "_simple_undirected")
+        #
+        # # BFS, bowtie-assumptions
+        # bfs.cumul_BFS(G_simple_directed, file_save_string)
+        # ov.add_text(results_multi, "\n## Bowtie Analysis\n\n")
+        # ov.add_text(results_directed, "\n## Bowtie Analysis\n\n")
+        # ov.add_text(results_undirected, "\n## Bowtie Analysis\n\n")
+        # res = bfs.bowtie_components(G, file_save_string + "_multi")
+        # res_dir = bfs.bowtie_components(G_simple_directed, file_save_string + "_simple_directed")
+        # res_undir = bfs.bowtie_components(G_simple_undirected, file_save_string + "_simple_undirected")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+        #
+        # #Path metrics
+        # res = path.diameter_metrics(G, "chess_multi")
+        # res_dir = path.diameter_metrics(G_simple_directed, file_save_string + "_directed")
+        # res_undir = path.diameter_metrics(G_simple_undirected, file_save_string + "_undirected")
+        # ov.add_text(results_multi, "\n## Path metrics\n\n")
+        # ov.add_text(results_directed, "\n## Path metrics\n\n")
+        # ov.add_text(results_undirected, "\n## Path metrics\n\n")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+        #
+        # #Cluster metrics
+        # res = clust.cluster_metrics(G)
+        # res_dir = clust.cluster_metrics(G_simple_directed)
+        # res_undir = clust.cluster_metrics(G_simple_undirected)
+        # ov.add_text(results_multi, "\n## Cluster metrics\n\n")
+        # ov.add_text(results_directed, "\n## Cluster metrics\n\n")
+        # ov.add_text(results_undirected, "\n## Cluster metrics\n\n")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
+        #
+
+
 
         # BFS, bowtie-assumptions
         #
-        bfs.cumul_BFS(G_simple_directed, "fencing" + currentPath.replace('/', ' '))
+        # bfs.cumul_BFS(G_simple_directed, "fencing_" + currentPath.replace('/', '_'))
+        # print("Saved.")
 
 
 

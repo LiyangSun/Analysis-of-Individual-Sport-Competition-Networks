@@ -1,8 +1,6 @@
 import snap
 import pickle
 
-#test
-
 
 def quick_properties(graph, name, dic_path):
     """Get quick properties of the graph "name". dic_path is the path of the dict {players: id} """

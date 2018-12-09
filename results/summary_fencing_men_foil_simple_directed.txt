@@ -1,0 +1,40 @@
+########## Summary of fencing_men_foil_simple_directed network ##########
+
+a. Nodes: 350
+b. Edges: 590
+c. Self-edges: 0
+d. Directed edges: 590
+e. Undirected edges: 588
+f. Reciprocated edges: 2
+g. 0 out-degree nodes: 1
+h. 0 in-degree nodes: 122
+i. Maximum node out-degree: 9
+j. Maximum node in-degree: 18
+k. Weakly connected components: 2
+l. Nodes, edges of largest WCC: (265, 506)
+m. Three top PageRank: ('machovec, andrew', 'itkin, nick', 'tourette, geoffrey')
+n. Three top hubs: ('moelis, samuel (sam)', 'orts, lucas', 'chen, earnest')
+o. Three top authorities: ('tourette, geoffrey', 'itkin, nick', 'chen, earnest')
+
+## Bowtie Analysis
+
+a. SCC: 102
+b. IN: 163
+c. OUT: 0
+d. TENDRILS + TUBES: 0
+e. DISCONNECTED: 85
+
+## Path metrics
+
+a. Diameter: 22
+b. Effective diameter: 13.6679640719
+c. Average shortest path length: 7.98292850182
+d. Path probability: 0.209
+
+## Cluster metrics
+
+a. Clustering coefficient: 0.01332340442
+b. Alternate clustering coefficient: 0.0193493425187
+c. Number of triads: 43
+d. Closed triads: 43
+e. Open triads: 2910

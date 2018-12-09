@@ -29,7 +29,7 @@ def cumul_BFS(graph, name, N=1000):
     plt.plot(x, X_out)
     plt.title('{}, using outlinks'.format(name))
 
-    plt.savefig("reachability_{}".format(name), bbox_inches="tight")
+    plt.savefig("../results/reachability_bfs/reachability_{}".format(name), bbox_inches="tight")
 
 
 def bowtie_components(graph, name):
