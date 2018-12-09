@@ -15,14 +15,6 @@ def load_global(sport, multi=True, directed=True, unweighted=True):
             else:
                 s = "../graphs/chess/100months_simple_undirected_unweighted.graph"
 
-    elif sport == "fencing":
-        if multi:
-            s = "../graphs/fencing/2017_2018_multi_directed_unweighted.graph"
-        else:
-            if directed:
-                s = "../graphs/fencing/2017_2018_simple_directed_unweighted.graph"
-            else:
-                s = "../graphs/fencing/2017_2018_simple_undirected_unweighted.graph"
     elif sport == "tennis_men":
         if multi:
             s = "../graphs/tennis/men/men_2000_2018_multi_directed_unweighted.graph"
@@ -39,6 +31,16 @@ def load_global(sport, multi=True, directed=True, unweighted=True):
                 s = "../graphs/tennis/women/women_2007_2018_simple_directed_unweighted.graph"
             else:
                 s = "../graphs/tennis/women/women_2007_2018_simple_undirected_unweighted.graph"
+    elif "fencing" in sport: #expecting "fencing_"
+        currentPath = sport[len("fencing") + 1:]
+
+        if multi:
+            s = "../graphs/fencing/" + currentPath + "/2017_2018_multi_directed_unweighted.graph"
+        else:
+            if directed:
+                s = "../graphs/fencing/" + currentPath + "/2017_2018_simple_directed_unweighted.graph"
+            else:
+                s = "../graphs/fencing/" + currentPath + "/2017_2018_simple_undirected_unweighted.graph"
 
     FIn = snap.TFIn(s)
     if multi:
