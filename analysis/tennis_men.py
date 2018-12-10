@@ -93,29 +93,28 @@ if __name__ == '__main__':
 
         # Temporal metrics
         #
-        res_dir = tmetrics.temporal_metrics(graphs)
-        res = tmetrics.temporal_metrics(graphs_multi)
-        res_undir = tmetrics.temporal_metrics(graphs_undirected, directed=False)
-        ov.add_text(results_multi, "\n## Temporal metrics\n\n")
-        ov.add_text(results_directed, "\n## Temporal metrics\n\n")
-        ov.add_text(results_undirected, "\n## Temporal metrics\n\n")
-        ov.add_results(results_multi, res)
-        ov.add_results(results_directed, res_dir)
-        ov.add_results(results_undirected, res_undir)
+        # res_dir = tmetrics.temporal_metrics(graphs)
+        # res = tmetrics.temporal_metrics(graphs_multi)
+        # res_undir = tmetrics.temporal_metrics(graphs_undirected, directed=False)
+        # ov.add_text(results_multi, "\n## Temporal metrics\n\n")
+        # ov.add_text(results_directed, "\n## Temporal metrics\n\n")
+        # ov.add_text(results_undirected, "\n## Temporal metrics\n\n")
+        # ov.add_results(results_multi, res)
+        # ov.add_results(results_directed, res_dir)
+        # ov.add_results(results_undirected, res_undir)
 
 
 
-        # print(tmetrics.charac_temporal_clust_coef(graphs))
-        # print(tmetrics.charac_temporal_alt_clust_coef(graphs))
+
 
         # features = sr.basic_features(graph, True)
-        # rec_features = sr.recursive_features(graph, K=2, directed=True)
+        # rec_features = sr.recursive_features(G, K=3, directed=True)
         # sr.sim_node_max("Nadal R.", features, dic_path)
         # sr.sim_node_max("Nadal R.", rec_features, dic_path)
-        # sr.plot_sim_hist("Federer R.", rec_features, dic_path, bin_width=30)
+        # sr.plot_sim_hist("Nadal R.", rec_features, dic_path, bin_width=30)
 
-        # sim.JA_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
-        # sim.CN_similarity_max(graph_directed, "Federer R.", dic_path, directed=True)
+        # sim.JA_similarity_max(G_simple_undirected, "Federer R.", dic_path, directed=False)
+        # sim.CN_similarity_max(G_simple_undirected, "Federer R.", dic_path, directed=False)
 
         # directed_3 = md.load_3_subgraphs()
         # motif_counts = [0] * len(directed_3)
@@ -141,5 +140,3 @@ if __name__ == '__main__':
         # Same but with Girvan/Newman method
         # CmtyV = snap.TCnComV()
         # print snap.CommunityGirvanNewman(graph_undirected, CmtyV)
-
-        # print snap.GetClustCf(graph)
